@@ -1,0 +1,194 @@
+\part{}
+\section{平衡状態の本質}
+\subsection{等重率の原理}
+平衡状態のマクロな性質とは「典型的な状態」が共通にもっている性質のことである．我々が共通の性質を知りたいのならば，方針として，「例外的状態を含めて，取りうる状態すべてについて平均をとる」ことである．この方針は例外的な状態を含めても，圧倒的大多数が典型的な状態であるから，平均的な性質に与える影響は無視できるはずである．つまり，等確率になるモデルを考えれば，平均を考えることができる．そこで，次に示す等重率の原理\footnote{%
+原理と名前についているが，本当に成立しているかどうかは証明できない．
+}
+あるいは等確率の原理と呼ばれる確率モデルを考える．
+　\begin{itembox}[l]{等確率の原理}
+「エネルギーが$E$となる各力学的な状態は，等確率で出現する．」
+\end{itembox}
+これは，「共通の性質」を抽出するための理論的方策である．
+\section{小正準集合の方法}
+\subsection{ミクロカノニカルアンサンブル}
+　\begin{itembox}[l]{小正準集合（ミクロカノニカルアンサンブル）}
+$E$に$[E,E+\delta E]$と幅を持たせる．小正準集合とは「$N$，$V$，$E\sim E+\delta E$を指定したときに，各々の取りうる力学的状態が等確率（定数）で出現する確率モデル」である．
+\end{itembox}
+上の文章をそのまま式で表そう．状態$(N,V,[E+\delta E])$を指定したときにある力学的な状態「$r$」が出現する確率を$p_{N,V,E}(r)$とすると
+\begin{equation}
+p_{(N,V,E)}(r)=A\mbox{（定数）}
+\end{equation}
+とかける．すべての力学状態に対する足し上げを行うと
+  \begin{eqnarray*}
+\begin{split}
+\displaystyle\sum_{r}p_{(N,V,E)}(r)=\displaystyle\sum_{r}A=A\displaystyle\sum_{r}1
+  \end{split}
+\end{eqnarray*}
+$\displaystyle\sum_{r}1$は全状態数になっているから，$(N,V,[E+\delta E])$をとる状態数を$W(N,V,E)$とおくと，
+  \begin{eqnarray*}
+\begin{split}
+\displaystyle\sum_{r}p_{(N,V,E)}(r)=A\displaystyle\sum_{r}1=A\ W(N,V,E)
+  \end{split}
+\end{eqnarray*}
+となる．これが1と等しいから，
+  \begin{eqnarray*}
+\begin{split}
+A=\frac{1}{W(N,V,E)}
+  \end{split}
+\end{eqnarray*}
+となり，
+\begin{equation}
+\label{p1}
+p_{(N,V,E)}(r)=
+{}
+\begin{cases}
+\dfrac{1}{W(N,V,E)}\\[20pt]
+0
+    \end{cases}
+\end{equation}
+を得る．
+\subsection{状態数$W(N,V,E)$とエントロピー}
+粒子数$N$，体積$V$，エネルギー$E$の孤立系の取りうる全状態数を$W(N,V,E)$とする．このとき，平衡状態を与える力学的状態の状態数$W_{\rm{eq}}(N,V,E)$とそれ以外の状態を与える力学的状態の状態数$W_{\rm{neq}}(N,V,E)$および，全状態数$W(N,V,E)$との間には
+\begin{align}
+\label{w}
+W(N,V,E)=W_{\rm{eq}}(N,V,E)+W_{\rm{neq}}(N,V,E)
+\end{align}
+が成立する．
+取りうる力学的状態の圧倒的大多数が，マクロな物理量から見て，平衡状態が区別がつけない状態（典型的状態）で占められる．すなわち，
+\begin{align}
+W_{\rm{eq}}(N,V,E)\gg W_{\rm{neq}}(N,V,E)．
+  \end{align}
+%%%%%%%%%
+これにより，(\ref{w})は
+\begin{align}
+\label{w1}
+W(N,V,E)\simeq W_{\rm{eq}}(N,V,E)
+  \end{align}
+  となる．
+  \paragraph{孤立系のエントロピー}
+  孤立系で変化が起きるとエントロピー$S$は増大，または一定となる．エントロピー	$S$は非現象的な量であり，エントロピー$S$が最大のとき，平衡状態となる．よって，平衡状態の$S$と$W_{\rm{eq}}(N,V,E)$は次のように関係づけれるだろう．
+\begin{align}
+\label{S1}
+S=f\biggl(W_{\rm{eq}}(N,V,E)\biggr)\simeq f\biggl(W(N,V,E)\biggr)
+  \end{align}
+  エントロピーの相加性の性質より
+  \begin{align}
+\label{S2}
+S_{\rm{A+B}}=S_{\rm A}+S_{\rm B}．
+  \end{align}
+  ここで，$S_{\rm{A}}$は系Aのエントロピー，$S_{\rm{B}}$は系Bのエントロピーであり，系Aと系Bを足した系A$+$Bのエントロピーを$S_{\rm{A+B}}$で表した．\\
+　状態数$W(N,V,E)$の場合は系Aの状態数を$W_{\rm{A}}$，系Bの状態数を$W_{\rm{B}}$とすると，系Aと系Bを足した系A$+$Bの状態数$W_{\rm{A+B}}$は
+　  \begin{align}
+\label{w2}
+W_{\rm{A+B}}=W_{\rm A}\times W_{\rm B}．
+  \end{align}
+  となる．(\ref{S1})より，
+  \begin{eqnarray*}
+\begin{split}
+S_{\rm{A+B}}=f\biggl(W_{\rm{A+B}}(N,V,E)\biggr)
+  \end{split}
+\end{eqnarray*}
+上式の左辺は(\ref{S2})より，
+\begin{eqnarray*}
+\begin{split}
+S_{\rm{A+B}}=S_{\rm A}+S_{\rm B}=f\biggl(W_{\rm{A}}(N,V,E)\biggr)+f\biggl(W_{\rm{B}}(N,V,E)\bigg)
+  \end{split}
+\end{eqnarray*}
+となり，上式の右辺は
+ \begin{eqnarray*}
+\begin{split}
+f\biggl(W_{\rm{A+B}}(N,V,E)\biggr)=f\biggl(W_{\rm{A}}(N,V,E)\times W_{\rm{B}}(N,V,E)\biggr)
+  \end{split}
+\end{eqnarray*}
+となるから，
+\begin{align}
+f\biggl(W_{\rm{A}}(N,V,E)\biggr)+f\biggl(W_{\rm{B}}(N,V,E)\bigg)=f\biggl(W_{\rm{A}}(N,V,E)\times W_{\rm{B}}(N,V,E)\biggr)
+\end{align}
+が得られる．
+となるが，(\ref{e5})と比較すると
+\begin{equation}
+\label{eA}
+\displaystyle\sum_{i=1}^3a_{ij}a_{ik}=\delta_{jk} .\ \ \ \ \ \ j,k=1,2,3\tag{A}
+\end{equation}
+が要求される．\\
+　次に，$S^\prime$系から$S$系への変換，すなわち逆変換を考えよう．逆変換が次のようにかけるとする．
+　 \begin{eqnarray*}
+\begin{split}
+\displaystyle\sum_{j=1}^3a_{jk}x^\prime_j
+=\displaystyle\sum_{i=1}^3\displaystyle\sum_{j=1}^3a_{jk}a_{ji}x_i
+=\displaystyle\sum_{i=1}^3\delta_{ki}x_i=x_k
+  \end{split}
+\end{eqnarray*}
+すなわち，
+\begin{align}
+x_k=\displaystyle\sum_{j=1}^3a_{jk}x_j^\prime
+  \end{align}
+により与えられる．そこで，
+  \begin{eqnarray*}
+\begin{split}\displaystyle\sum_{k=1}^3x_k x_k
+&=
+\left(
+\renewcommand{\arraystretch}{1.5}
+    \begin{array}{c}
+  x_1\\
+  x_2\\
+    x_3\\
+    \end{array}
+  \right)\cdot
+  \left(
+\renewcommand{\arraystretch}{1.5}
+   \begin{array}{c}
+  x_1\\
+  x_2\\
+    x_3\\
+    \end{array}
+  \right)\\[20pt]
+  &=%
+  \left(
+\renewcommand{\arraystretch}{1.5}
+    \begin{array}{c}
+     \displaystyle\sum_{j=1}^3a_{j1}x_j^\prime\\
+  \displaystyle\sum_{j=1}^3a_{j2}x_j^\prime\\
+    \displaystyle\sum_{j=1}^3a_{j3}x_j^\prime\\
+    \end{array}
+  \right)\cdot
+  \left(
+\renewcommand{\arraystretch}{1.5}
+    \begin{array}{c}
+  \displaystyle\sum_{i=1}^3a_{i1}x_i^\prime\\
+  \displaystyle\sum_{i=1}^3a_{i2}x_i^\prime\\
+    \displaystyle\sum_{i=1}^3a_{i3}x_i^\prime\\
+    \end{array}
+  \right)\\[20pt]
+  &=
+\Biggl(\displaystyle\sum_{j=1}^3a_{j1}x_j\Biggr)\Biggl(\displaystyle\sum_{i=1}^3a_{i1}x_i\Biggr)
++\Biggl(\displaystyle\sum_{j=1}^3a_{j2}x_j\Biggr)\Biggl(\displaystyle\sum_{i=1}^3a_{i2}x_i\Biggr)
++\Biggl(\displaystyle\sum_{j=1}^3a_{j3}x_j\Biggr)\Biggl(\displaystyle\sum_{i=1}^3a_{i3}x_i\Biggr)\\[10pt]
+&=\displaystyle\sum_{j=1}^3\displaystyle\sum_{k=1}^3\Biggl(\displaystyle\sum_{i=1}^3a_{kj}a_{ki}\Biggr)x_jx_i
+  \end{split}
+\end{eqnarray*}
+となり，(\ref{e5})より，
+\begin{equation}
+\label{eB}
+\displaystyle\sum_{i=1}^3a_{jk}a_{ki}=\delta_{ij} .\ \ \ \ \ \ i,j=1,2,3\tag{B}
+\end{equation}
+が要求される．\\
+%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+このことから，旧座標と回転した座標が直交座標系のとき，
+　\begin{numcases}
+{}
+\label{A}
+\displaystyle\sum_{i=1}^3a_{ij}a_{ik}=\delta_{jk} .\ \ \ \ \ \ j,k=1,2,3&\\[10pt]
+\label{B}
+\displaystyle\sum_{i=1}^3a_{jk}a_{ki}=\delta_{ij} .\ \ \ \ \ \ i,j=1,2,3&
+\end{numcases}
+であることが要請されることがわかる．\\
+　(\ref{A})は，行列Aの列の成分が互いに直交し，自分自身との内積が1になることを表している．また，(\ref{B})は行列Aの転地行列${}^tA$の列の成分が互いに直交し，自分自身との内積が1になることを表している．\\
+　(\ref{A})，(\ref{B})の性質から，
+　\begin{align}
+　\label{E}
+　{}^tAA=E
+　\end{align}
+　であることがわかる．(\ref{E})の性質を満たす，正方行列$A$を直交行列という．
+　

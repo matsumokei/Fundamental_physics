@@ -1,0 +1,44 @@
+\part{grand canonical distribution}
+\section{大正準集合（グランドカノニカルアンサンブル）の方法}
+\subsection{}
+全系の取りうる状態数を$W(N_{\rm T},E_{\rm T})$とおく．\footnote{%
+TはTotalの意味である
+}
+いま，注目系が粒子数$N$をとり，ある一つの状態$i$を取っているとする．そのときのエネルギーを$E_{N,i}$とする．一つの状態$i$を指定したときの「熱浴」の取りうる状態を
+　\begin{eqnarray*}
+  \begin{split}
+W_{\rm B}(N_{\rm B},E_{\rm B})=W_{\rm B}(N_{\rm T}-N,E_{\rm T}-E_{N,i})
+  \end{split}
+\end{eqnarray*}
+とする．ここで，$N_{\rm B}=N_{\rm T}-N$，$E_{\rm B}=E_{\rm T}-E_{Ni}$である．\\
+　すると，全系の状態数は$W_{\rm B}$を全粒子数かつ全状態で和を取ったものであり，
+　\begin{align}
+W(N_{\rm T},E_{\rm T})=\displaystyle\sum_{N}\displaystyle\sum_{i}W_{\rm B}(N_{\rm T}-N,E_{\rm T}-E_{N,i})
+\end{align}
+となる．\\
+　注目系が，粒子数$N$，ある一つの状態$i$をとる確率$P_{N,i}$は
+　\begin{align}
+P_{N,i}=
+\frac{W_{\rm B}(N_{\rm T}-N,E_{\rm T}-E_{Ni})}{\displaystyle\sum_{N}\displaystyle\sum_{i}W_{\rm B}(N_{\rm T}-N,E_{\rm T}-E_{N,i})}
+\end{align}
+という関係式において，電場$\bm E_0$は$z$方向のみに依存するから，
+\begin{eqnarray*}
+\begin{split}
+\frac{d}{dz}\phi_0=-E_0
+  \end{split}
+\end{eqnarray*}
+となり，これを解くと，
+\begin{eqnarray*}
+\begin{split}
+\phi_0=-E_0z+C
+  \end{split}
+\end{eqnarray*}
+となる．そして，$z=r\cos\theta$であるから，静電ポテンシャル$\phi_0$は
+　\begin{align}
+\phi_0=-E_0r\cos\theta+C
+\end{align}
+で与えられる．\\
+　次に導体の外部での静電場$\bm E_1$による，静電ポテンシャル$\phi_1(x,y,z)$を求めよう．これを求めるには次のLaplaceの方程式を解けばいい．
+　\begin{align}
+\Delta\phi_1(x,y,z)=0
+\end{align}

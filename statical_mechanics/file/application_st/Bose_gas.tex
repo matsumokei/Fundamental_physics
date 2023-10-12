@@ -1,0 +1,547 @@
+\part{Bose気体とBose-Einstein凝縮}
+　量子系として1つの量子状態$\ket{\psi}$のみをとるような系を考える．すると状態$\ket{\psi}$と物理量に相当する演算子$\hat{A}$できまるスカラー量
+\begin{align}
+\label{ev}
+\Braket{\hat{A}}_{\psi}=\Braket{\psi|\hat{A}|\psi}
+\end{align}
+を，物理量$\hat{A}$の$\ket{\psi}$に対する期待値として定義できる．期待値を計算することができれば，考えている系の物理量の観測値をあたえることができる．\\
+　量子系が多数の系によって記述された場合，統計集団の考え方を導入することによって，観測値はどのような表式で記述できるかを本書では述べる．
+
+
+
+
+
+
+%%
+\section{自由Bose気体とBose-Einstein凝縮}
+Bose粒子間の相互作用が無視できるほど小さいとき，各粒子は独立とみなせる．このようなBose粒子からなる系を，自由Bose粒子系，あるいはBose粒子という．このBose気体を考察していく．熱平衡状態では，この系の1粒子の分布はBose分布関数
+\be\label{bdf}
+\fb(\ep)=\frac{1}{e^{\beta(\ep-\mu)}-1},\ \ \ \ \ \beta=1/\kb T
+\ee
+で記述される．$T$は温度，$\mu$は化学ポテンシャル，$\ep$は1粒子のエネルギーである．\\
+　Bose分布関数は，1粒子エネルギ$\ep$が持つ粒子数の平均を表し，次の規格化条件を満たす：
+\be
+\frac{1}{V}\displaystyle\sum_{\ep}\fb(\ep)=\frac{N}{V}=n\ \text{（数密度）．}
+\ee
+　定義から，Bose分布関数は，$\fb(\ep)$は，エネルギー$\ep$の粒子を見出す相対確率である．したがって，関数$\fb(\ep)$は負であってはならない：
+\be\label{bdf1}
+\fb(\ep)=\frac{1}{e^{\beta(\ep-\mu)}-1}\geq0,\ \ \ \ \ \therefore\ep-\mu\geq0
+\ee
+この性質をすべてのエネルギー$\ep\geq0$に対して保証するには，Bose気体の化学ポテンシャル$\mu$は正であってはならない：
+\be\label{mu0}
+\fbox{
+$\mu\leq0$
+}．
+\ee
+さもないと，Bose分布$\fb(\ep)$は$0\leq\ep<\mu$で負となる．化学ポテンシャル$\mu$に対するこの条件$(\mu\leq0)$は，系にボソンを付け加えるのにエネルギーが必要ないこと意味する．\\
+%
+　質量$m$の自由Bose粒子で構成される系（非相対論的Bose気体）を考察する．Bose気体のエネルギーを$E$，粒子の総数を$N$，状態$\vp$の1粒子のエネルギー（運動量エネルギー）を$\ep_{\vp}$，その状態にある粒子の平均粒子数を$n_{\vp}$で表すと，
+\be\label{e}
+E=\displaystyle\sum_{\vp}\ep_{\vp}n_{\vp}
+=\displaystyle\sum_{\vp}\frac{\ep_{\vp}}{e^{\beta(\ep_{\vp}-\mu)}-1}
+\ee
+\be\label{n}
+N=\displaystyle\sum_{\vp}n_{\vp}
+=\displaystyle\sum_{\vp}\frac{1}{e^{\beta(\ep_{\vp}-\mu)}-1}
+\ee
+で与えられる．自由ボソン系の平均粒子数
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+\subsection{自由ボソンの状態密度}
+簡単のため，体積$V=L^3$の立方体の箱に入っているスピンゼロ$(s=0)$のBose粒子を仮定する．量子力学によれば，3次元箱の中の自由粒子のエネルギー固有値，固有関数はそれぞれ，
+\be
+\epsilon_{\vp}=\frac{p^2}{2m}
+=\frac{\hbar^2k^2}{2m}=\frac{(2\pi)^2\hbar^2}{2mL^2}(n_x^2+n_y^2+n_z^2)\ \ \ \ \ \ (n_x,n_y,n_z\in\mathbb{Z})\\[10pt]
+\ee
+\be
+\varphi_{\vp}(\vr)\equiv\braket{\vr|\vp}
+=\frac{1}{\sqrt{V}}\exp{(i\vp\cdot\vr/\hbar)}
+=\frac{1}{\sqrt{V}}\exp{[i(p_xx+p_yy+p_zz)/\hbar]}
+\ee
+で与えられる．
+\be\label{sum31}
+\displaystyle\sum_{\vp_\kappa} A(\vp_{\kappa})\equiv
+\displaystyle\sum_{p_{x,j}}
+\displaystyle\sum_{p_{y,k}}
+\displaystyle\sum_{p_{z,l}}
+A(\vp_{\kappa})
+\ee
+を考える．3次元の周期的立方体の境界条件のもとでは，1粒子量子の運動量固有状態は，三つの量子数
+\be\label{3dp}
+\fbox{
+$p_{x,j}=\left(
+\dfrac{2\pi\hbar}{L}
+\right)j,\ \ 
+p_{y,k}=\left(
+\dfrac{2\pi\hbar}{L}
+\right)k,\ \ 
+p_{z,l}=\left(
+\dfrac{2\pi\hbar}{L}
+\right)l$
+}
+\ee
+で指定される．$L$は立方体の1辺の長さ，量子数$(j,k,l)$は整数の組である．簡単のため，運動量状態を1個のギリシア文字$\kappa$で表す：
+\be
+\vp_{\kappa}\equiv(p_{x,j},p_{y,k},p_{z,l})．
+\ee
+微小な運動量体積要素$\Delta^3 p$は
+\be
+\Delta^3 p\equiv\Delta p_x\Delta p_y\Delta p_z=\left(\dfrac{2\pi\hbar}{L}\right)^3
+\ee
+となる．微小な運動量体積要素$\Delta^3 p$の状態数を$\Delta n$で表す．比$\Delta n/\Delta^3 p$について考えよう．この比の分母分子を$\Delta n$で割ると，
+\be
+\frac{\Delta n}{\Delta^3 p}=\frac{\Delta n}{\Delta^3 p}\frac{\Delta n}{\Delta n}
+=\frac{1}{\Delta^3 p/\Delta n}
+=\frac{1}{\text{状態当たりの運動量体積要素}}
+=\left(\frac{L}{2\pi\hbar}\right)^3
+\ee
+を得る．さて，次の和
+\be\label{sum32}
+\displaystyle\sum_{\kappa^\prime} A(\vp_{\kappa^\prime})\frac{\Delta n}{\Delta^3 p^{(\kappa^\prime)}}\Delta^3 p^{(\kappa^\prime)}
+\ee
+を考えよう．$\Delta^3 p^{(\kappa^\prime)}$は$\kappa^\prime$番目の運動量体積要素，$p_\kappa^\prime$は体積要素$\Delta p^{(\kappa^\prime)}$中の代表値である．(\ref{sum31})，(\ref{sum32})における和はともに同じ次元である．\\
+　$L$を十分長くとるとき，運動量状態$\{\vp_{\kappa}\}$に対して$\Delta n/\Delta^3 p^{(\kappa^\prime)}$が状態密度と見なせるから，バルク極限で(\ref{sum31})と(\ref{sum32})は等しくなる：
+\be
+{\rm{Lim}}\displaystyle\sum_{\vp_\kappa}A(\vp_{\kappa})
+={\rm{Lim}}\displaystyle\sum_{\kappa^\prime} A(\vp_{\kappa^\prime})\frac{\Delta n}{\Delta^3 p^{(\kappa^\prime)}}\Delta^3 p^{(\kappa^\prime)}．
+\ee
+区間を無限小にする極限（$\lim_{L\to\infty}$）で右辺の積分は
+\be
+\lim_{L\to\infty}
+\displaystyle\sum_{\kappa^\prime} A(\vp_{\kappa^\prime})\frac{\Delta n}{\Delta^3 p^{(\kappa^\prime)}}\Delta^3 p^{(\kappa^\prime)}
+=\int d^3p\left(
+\frac{dn}{d^3p}
+\right)A(p)
+\ee
+となる．ここで，
+\be
+	\frac{dn}{d^3p}\equiv
+	\lim_{\Delta^3 p\to0}\frac{\Delta n}{\Delta^3 p}=\left(\frac{L}{2\pi\hbar}\right)^3
+\ee
+となる．これは3次元運動量空間での状態密度（以下$D(\vp)$で記す）である．要約すると，
+\be\label{eq2}
+\fbox{
+$\displaystyle\lim_{L\to\infty}\displaystyle\sum_{\kappa^\prime} A(\vp_{\kappa^\prime})\frac{\Delta n}{\Delta^3 p^{(\kappa^\prime)}}\Delta^3 p^{(\kappa^\prime)}
+=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}d^3pD(\vp)A(\vp)
+$
+}
+\ee
+が得られる．3次元極座標を用いて，積分を書き直すと，
+\be
+d^3p=p^2\sin\theta dpd\theta d\psi
+\ee
+より，
+\begin{align}\label{dsum2}
+\displaystyle\sum_{\vp}\to
+\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}d^3pD(\vp)
+&=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}d^3p\left(\frac{L}{2\pi\hbar}\right)^3\nn[10pt]
+&=\int_{0}^{\infty}p^2dp\int_{0}^{\pi}d\theta\sin\theta\int_{0}^{2\pi}d\psi\left(\frac{L}{2\pi\hbar}\right)^3\nn[10pt]
+&=\frac{2\pi V}{(2\pi\hbar)^3}\int_{0}^{\infty}p^2dp\int_{0}^{\pi}d\theta\sin\theta\nn[10pt]
+&=\frac{2\pi V}{(2\pi\hbar)^3}\int_{0}^{\infty}p^2dp\biggl[-\cos\theta\biggr]_{0}^{\pi}\nn[10pt]
+&=\frac{4\pi V}{(2\pi\hbar)^3}\int_{0}^{\infty}p^2dp
+\end{align}
+となる．
+
+
+
+
+
+
+
+
+
+%%
+\subsection{}
+(\ref{n})を考察しよう．1粒子（ボソン）の分散関係が
+\be\label{b0}
+\epsilon_{\vp}=\frac{p^2}{2m}
+\ee
+で与えられる自由Bose気体では，運動量ゼロの状態（基底エネルギー$\epsilon_{\vp}$）は，以下で見るように特別な役割を果たしており，この状態を無視することはできない．そこで，(\ref{n})の状態$\vp$に関する和をとるとき，$\vp=\bm0$で1粒子エネルギーが$\epsilon_{\vp}=0$となることを考慮して，1粒子基底エネルギー準位（$\epsilon_{\vp}\equiv\epsilon_{0}=0$）を占有する粒子数$N_0$を和の外に出し，
+\be\label{b1}
+N=N_0+\displaystyle\sum_{\vp\neq0}\frac{1}{e^{\beta(\epsilon_{\vp}-\mu)}-1},\ \ \ \ \ N_0=\frac{1}{e^{-\beta\mu}-1}
+\ee
+を考察する．$L$を大きくする極限では運動量固有値は連続スペクトルを形成するので，(\ref{b1})の和を(\ref{dsum2})積分に置き換えることができる．したがって，全ボソン数は
+\begin{align}\label{b2}
+N&=N_0+\displaystyle\sum_{\vp\neq0}\frac{1}{e^{\beta(\epsilon_{\vp}-\mu)}-1}\nn[10pt]
+&=\frac{1}{e^{-\beta\mu}-1}
++\frac{4\pi V}{(2\pi\hbar)^3}\int_{+0}^{\infty}\frac{p^2}{e^{\beta(\epsilon_{\vp}-\mu)}-1}dp
+\end{align}
+ここで，逃散能（fugacity）と呼ばれるパラメータ$z\equiv\exp(\beta\mu)$を導入すると，
+\begin{align}\label{b3}
+N&=\frac{z}{1-z}
++\frac{4\pi V}{(2\pi\hbar)^3}\int_{+0}^{\infty}\frac{p^2}{z^{-1}e^{\beta\epsilon_{\vp}}-1}dp
+\end{align}
+と書ける．初項は運動量ゼロのボソン数，第2項は運動量がゼロでないボソン数を表す．具体的には，初項は1粒子数の基底エネルギー準位$\epsilon_{0}=0$を占有する粒子数，第2項は1粒子の励起準位エネルギー$\epsilon_{\vp=0}>0$を占有する粒子数と解釈できる．\\
+%
+　1粒子の分散関係$\epsilon=\epsilon_{\vp}$が与えられると，(\ref{b3})の第2項はエネルギー状態密度$D(\epsilon)$を用いて，次のように書ける：
+\begin{align}\label{b4}
+\frac{4\pi V}{(2\pi\hbar)^3}\int_{+0}^{\infty}\frac{p^2}{z^{-1}e^{\beta\epsilon_{\vp}}-1}dp
+&=\int_{0}^{\infty}\frac{D(\epsilon)}{z^{-1}e^{\beta\epsilon}-1}d\epsilon
+\end{align}
+状態密度$D(\epsilon)$は分散関係$\epsilon=\epsilon_{\vp}=p^2/2m$を用いて，
+\be
+p=\sqrt{2m\epsilon},\ \ \ \ \ \ dp=\sqrt{2m}\cdot\frac{\epsilon^{-1/2}}{2}d\epsilon
+\ee
+と変数変換し，
+\begin{align}\label{b5}
+\frac{4\pi V}{(2\pi\hbar)^3}\int_{+0}^{\infty}\frac{p^2}{z^{-1}e^{\beta\epsilon_{\vp}}-1}dp
+&=\frac{4\pi V}{(2\pi\hbar)^3}\int_{+0}^{\infty}\frac{2m\epsilon}{z^{-1}e^{\beta\epsilon}-1}\sqrt{2m}\cdot\frac{\epsilon^{-1/2}}{2}d\epsilon\nn[10pt]
+%
+&=\int_{0}^{\infty}\frac{1}{z^{-1}e^{\beta\epsilon}-1}\cdot
+\frac{V}{4\pi^2\hbar^3}(2m)^{3/2}\epsilon^{1/2}d\epsilon
+\end{align}
+と変形することにより得られる．これが分散関係が(\ref{b0})で与えられるスピンゼロの自由ボソンの状態密度である：
+\begin{align}\label{b6}
+D(\epsilon)\equiv
+\frac{V}{4\pi^2\hbar^3}(2m)^{3/2}\epsilon^{1/2}d\epsilon\equiv A\epsilon^{1/2},\ \ \ \ A\equiv\frac{V}{4\pi^2\hbar^3}(2m)^{3/2}
+\end{align}
+(\ref{b4})の積分の下限が$+0$ではなく$0$と書いた．なぜなら，自由ボソンの状態密度$D(\epsilon)$が$\epsilon^{1/2}$に比例するので，積分の下限を0としても積分にまったく影響しないからである．したがって，全粒子数の表式（正規化条件式）(\ref{b3})は，
+\be\label{b7}
+\fbox{$
+N=\dfrac{z}{1-z}+\displaystyle\int_{0}^{\infty}\frac{D(\epsilon)}{z^{-1}e^{\beta\epsilon}-1}d\epsilon=N_0+N_{\epsilon>0}
+$}
+\ee
+となる．第2項の$\epsilon$積分には，運動量ゼロのボソンは含まれていないことに注意せよ．この式は$N$個のボソンからなるBose気体（自由ボソン系）の性質を調べるのに用いられる．
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+\subsection{Bose-Einstein凝縮}
+1粒子の基底エネルギー準位$\epsilon_{\vp=\bm0}$，励起エネルギー準位$\epsilon_{\vp\neq\bm0}$を占有する粒子数$N_0，N_{\epsilon>0}$は逃散能$z$の振る舞いに依存する．与えられた$N，V，T$から，(\ref{b7})を解いて逃散能$z$をまず決める．それから(\ref{b7})に代入すれば，$N_0，N_{\epsilon>0}$を粒子数密度$N/V$，熱力学的絶対温度$T=(1/k_{\rm B}\beta)$の関数として求めることができる．ここでは，この問題を解析的に考察する．\\
+　基底状態$(\vp=\bm0)$にいるボソンの数$N_0$は
+\be
+N_0=\frac{z}{1-z}，\ \ \ \ \ z\equiv\exp(\beta\mu)=\exp(-\beta|\mu|)
+\ee
+で与えられる．化学ポテンシャルに対する条件$\mu\leq0$があることに注意せよ．\\
+ $N_0$は$z=1$に特異点をもつ．ゆえに，$z\to1-0$とすれば$N_0$は非常に大きくすることができる．例えば，$N_0=10^{20}$であるためには，$z=N_0/(N_0+1)$であるから，
+\be
+\beta|\mu|=-\ln{z}=\ln\{1/(1+N_0^{-1})\}=\ln(1+10^{-20})\simeq10^{-20}
+\ee
+と選べばよい．\footnote{%
+$x\ll1$のとき，$\ln(1+x)\simeq x$と近似できることを最後に使った．
+}
+つまり，非常に小さな$\beta|\mu|$を選べば，$N_0$を非常に大きくすることができる．\\
+　$N_0\geq0$であるから，$z,\mu$は次の条件を満たさねばならない%\footnote{$\mu=0$のとき，$z=0$，$\therefore N_0=0$となるから条件から除外される．　}
+：
+\be
+\fbox
+{$
+0\leq z<1,\ \ \ \ -\infty<\mu<0
+$}
+\ee
+%
+励起状態$(\vp\neq0)$にいるボソンの数$N_{\epsilon>0}$は
+\be
+N_{\epsilon>0}=\displaystyle\int_{0}^{\infty}\frac{D(\epsilon)}{z^{-1}e^{\beta\epsilon}-1}d\epsilon
+=A\displaystyle\int_{0}^{\infty}\frac{\epsilon^{1/2}}{z^{-1}e^{\beta\epsilon}-1}d\epsilon
+\ee
+で与えられる．$D(\epsilon)$は(\ref{b6})で与えられるエネルギー状態密度である．積分変数を$x=\beta\epsilon$に変換すると，その積分はAppell関数\footnote{%
+Appell関数については5節を参照してもらいたい．
+}
+\be
+\fbox{
+$
+F(\sigma,z)\equiv\dfrac{1}{\Gamma(\sigma)}\displaystyle\int_0^\infty  \dfrac{x^{\sigma-1}}{z^{-1}e^x-1}dx
+=\displaystyle\sum_{n=1}^\infty\frac{z^n}{n^\sigma}
+\ \ \ \ \ \ \ (\sigma\in\mathbb{R},\ |z|\leq1)
+$
+}
+\ee
+を用いて表すことができる：
+\begin{align}\label{b9}
+N_{\epsilon>0}
+&=A\displaystyle\int_{0}^{\infty}\frac{\epsilon^{1/2}}{z^{-1}e^{\beta\epsilon}-1}d\epsilon
+=A\displaystyle\int_{0}^{\infty}\left(\frac{x}{\beta}\right)^{1/2}
+\frac{1}{z^{-1}e^{x}-1}\frac{dx}{\beta}\nn[10pt]
+%
+&=A\displaystyle\int_{0}^{\infty}\left(\frac{x}{\beta}\right)^{1/2}
+\frac{1}{z^{-1}e^{x}-1}\frac{dx}{\beta}\nn[10pt]
+%
+&=A\beta^{-3/2}\Gamma(3/2)\frac{1}{\Gamma(3/2)}\displaystyle\int_{0}^{\infty}
+\frac{x^{\frac{3}{2}-1}}{z^{-1}e^{x}-1}dx\ \ \ \ (x=\beta\epsilon)\nn[10pt]
+&=A\beta^{-3/2}\Gamma(3/2)F(3/2,z)\ \ \ \ (\Gamma(3/2)=\sqrt{\pi}/2)\nn[10pt]
+%
+&=\frac{V}{\lambda_{T}^3}F(3/2,z)\ \ \ \ (A\beta^{-3/2}\Gamma(3/2)=V/\lambda_{T}^3)
+\end{align}
+%
+$\lambda_{T}=h/\sqrt{2\pi mk_{\rm B}T}$は熱的de Brogli波長である．\footnote{%
+$A\beta^{-3/2}\Gamma(3/2)=\dfrac{V}{4\pi^2\hbar^3}(2m)^{3/2}\beta^{-3/2}\sqrt{\pi}/2
+=V\dfrac{(2\pi mk_{\rm B}T)^{3/2}}{h^3}
+=V\left(\dfrac{\sqrt{2\pi mk_{\rm B}T}}{h}\right)^3=V/\lambda_{T}^3$
+}
+$z\leq1$に対して，$z^{-1}e^{\beta\epsilon}\geq e^{\beta\epsilon}$であるので，$N_{\epsilon>0}$は次式によって制限される：
+\be
+N_{\epsilon>0}(z)=\displaystyle\int_{0}^{\infty}\frac{D(\epsilon)}{z^{-1}e^{\beta\epsilon}-1}d\epsilon
+\leq\displaystyle\int_{0}^{\infty}\frac{D(\epsilon)}{e^{\beta\epsilon}-1}d\epsilon
+\equiv N_{\epsilon>0}^{\rm{max}}
+\ee
+したがって，励起エネルギー準位$(\epsilon=\epsilon_{\vp=\bm 0}>0)$を占有するボソンの総数は$z=1$$(\mu=0)$のとき最大となり，最大値$N_{\epsilon>0}^{\rm{max}}$は(\ref{b9})から次式で与えられる：
+\be
+N_{\epsilon>0}^{\rm{max}}=\displaystyle\int_{0}^{\infty}\frac{D(\epsilon)}{e^{\beta\epsilon}-1}d\epsilon
+N_{\epsilon>0}(z=1)=\frac{V}{\lambda_{T}^3}F(3/2,z=1)．
+\ee
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%
+\section{凝縮相にあるボソン}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%
+\section{自由Bose気体の内部エネルギー}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%
+\section{自由Bose気体の比熱}
+
+
+
+
+
+
+
+%%
+\section{Riemannの$\zeta$関数とAppell関数の初等的解説}
+\subsection{Riemannの$\zeta$関数の積分表示}
+Riemannの$\zeta$関数は次式で定義される：
+\be\label{z1}
+\fbox{
+$\zeta(z)\equiv\displaystyle\sum_{n=1}^{\infty}\dfrac{1}{n^z}\ \ \ \ \ ({\rm{Re}}\ z>1)$
+}
+\ee
+$\zeta$関数の積分表示を示す．それには，Gamma関数
+\be
+\fbox{
+$
+\Gamma(z)\equiv\displaystyle\int_0^\infty x^{z-1}e^{-x}dx\ \ \ \ \ ({\rm{Re}}\ z>1)
+$
+}
+\ee
+を使うのが良い．Gamma関数を$x\to nt$と変数変換すると，
+\begin{align}
+\Gamma(z)&=\displaystyle\int_0^\infty (nt)^{z-1}e^{-nt}ndt\nn[10pt]
+&=n^z\displaystyle\int_0^\infty t^{z-1}e^{-nt}dt
+\end{align}
+となる．さらに，
+\begin{align}\label{z2}
+\frac{1}{n^z}&=\frac{1}{\Gamma(z)}\displaystyle\int_0^\infty t^{z-1}e^{-nt}dt
+\end{align}
+を得る．したがって，$\zeta$関数は
+\begin{align}
+\zeta(z)=\displaystyle\sum_{n=1}^{\infty}\frac{1}{n^z}&=\frac{1}{\Gamma(z)}\displaystyle\int_0^\infty t^{z-1}
+\left(\displaystyle\sum_{n=1}^{\infty}e^{-nt}\right)dt\nn[10pt]
+&=\frac{1}{\Gamma(z)}\displaystyle\int_0^\infty t^{z-1}
+\left(e^{-t}+e^{-2t}+e^{-3t}+\cdots\right)dt
+\end{align}
+と表現できる．ここで，$e^{-1}\ll1$として，展開すれば
+\begin{align}
+\frac{1}{e^t-1}&=e^{-t}\frac{1}{1-e^{-t}}=e^{-t}\left(1+e^{-t}+e^{-2t}+e^{-3t}+\cdots\right)\nn[10pt]
+&=\left(e^{-t}+e^{-2t}+e^{-3t}+\cdots\right)=\displaystyle\sum_{n=1}^{\infty}e^{-nt}
+\end{align}
+であるから，$\zeta$関数は
+\begin{align}
+\frac{1}{n^z}&=\frac{1}{\Gamma(z)}\displaystyle\int_0^\infty t^{z-1}e^{-nt}dt
+\end{align}
+を得る．したがって，$\zeta$関数は
+\be
+\fbox{$
+\zeta(z)=\dfrac{1}{\Gamma(z)}\displaystyle\int_0^\infty \dfrac{t^{z-1}}{e^t-1}dt
+$}
+\ee
+と積分形で表すことができる．
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+\subsection{Appell関数}
+次の積分をAppell積分という：
+\be
+\fbox{$
+\phi(s,z)\equiv\dfrac{1}{\Gamma(s)}\displaystyle\int_0^\infty dt \dfrac{t^{s-1}}{z^{-1}e^t-1}\ \ \ \ \ \ \ (s>1,\ |z|\leq1)
+$}
+\ee
+$1/(z^{-1}e^t-1)$の展開
+\begin{align}
+\dfrac{1}{z^{-1}e^t-1}&=ze^{-t}\frac{1}{1-ze^{-t}}=ze^{-t}\left(1+ze^{-t}+z^2e^{-2t}+z^3e^{-3t}+\cdots\right)\nn[10pt]
+&=\left(ze^{-t}+z^2e^{-2t}+z^3e^{-3t}+\cdots\right)=\displaystyle\sum_{n=1}^{\infty}z^ne^{-nt}
+\end{align}
+を用いれば，
+\begin{align}
+\phi(s,z)&\equiv\dfrac{1}{\Gamma(s)}\displaystyle\int_0^\infty dt \dfrac{t^{s-1}}{z^{-1}e^t-1}\nn[10pt]
+&=\dfrac{1}{\Gamma(s)}\displaystyle\int_0^\infty dt\ t^{s-1}\left(\displaystyle\sum_{n=1}^{\infty}z^ne^{-nt}\right)\nn[10pt]
+%
+&=\displaystyle\sum_{n=1}^{\infty}z^n\dfrac{1}{\Gamma(s)}\displaystyle\int_0^\infty dt\ t^{s-1}e^{-nt}
+\end{align}
+ここで，(\ref{z2})より，
+\be
+\frac{1}{n^s}=\frac{1}{\Gamma(s)}\displaystyle\int_0^\infty t^{s-1}e^{-nt}dt
+\ee
+であることを用いれば，Appell関数は
+\be
+\fbox{
+$
+\phi(s,z)\equiv\dfrac{1}{\Gamma(s)}\displaystyle\int_0^\infty dt \dfrac{t^{s-1}}{z^{-1}e^t-1}
+=\displaystyle\sum_{n=1}^\infty\frac{z^n}{n^s}
+\ \ \ \ \ \ \ (s>1,\ |z|\leq1)
+$
+}
+\ee
+と表すことができる．最後の式は修正$\zeta$関数と呼ばれている．
+%%%%%%%%%%%%%%%%%%%%%%
+　\begin{thebibliography}{99}
+\item
+{鈴木彰・藤田重次(2008) 『統計熱力学の基礎』（共立出版）}
+\item
+{砂川重信(1991)
+『量子力学』（岩波書店）}
+\end{thebibliography}
+\end{document}
+
+

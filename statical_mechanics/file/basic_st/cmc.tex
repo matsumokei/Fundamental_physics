@@ -1,0 +1,359 @@
+\part{ミクロカノニカルアンサンブル}
+\section{平衡状態の本質}
+\subsection{等重率の原理}
+平衡状態のマクロな性質とは「典型的な状態」が共通にもっている性質のことである．我々が共通の性質を知りたいのならば，方針として，「例外的状態を含めて，取りうる状態すべてについて平均をとる」ことである．この方針は例外的な状態を含めても，圧倒的大多数が典型的な状態であるから，平均的な性質に与える影響は無視できるはずである．つまり，等確率になるモデルを考えれば，平均を考えることができる．そこで，次に示す等重率の原理\footnote{%
+原理と名前についているが，本当に成立しているかどうかは証明できない．
+}
+あるいは等確率の原理と呼ばれる確率モデルを考える．
+　\begin{itembox}[l]{等確率の原理}
+「エネルギーが$E$となる各力学的な状態は，等確率で出現する．」
+\end{itembox}
+これは，「共通の性質」を抽出するための理論的方策である．
+\section{小正準集合の方法}
+\subsection{ミクロカノニカルアンサンブル}
+　\begin{itembox}[l]{小正準集合（ミクロカノニカルアンサンブル）}
+$E$に$[E,E+\delta E]$と幅を持たせる．小正準集合とは「$N$，$V$，$E\sim E+\delta E$を指定したときに，各々の取りうる力学的状態が等確率（定数）で出現する確率モデル」である．
+\end{itembox}
+上の文章をそのまま式で表そう．状態$(N,V,[E+\delta E])$を指定したときにある力学的な状態「$r$」が出現する確率を$p_{N,V,E}(r)$とすると
+\begin{equation}
+p_{(N,V,E)}(r)=A\mbox{（定数）}
+\end{equation}
+とかける．すべての力学状態に対する足し上げを行うと
+  \begin{eqnarray*}
+\begin{split}
+\displaystyle\sum_{r}p_{(N,V,E)}(r)=\displaystyle\sum_{r}A=A\displaystyle\sum_{r}1
+  \end{split}
+\end{eqnarray*}
+$\displaystyle\sum_{r}1$は全状態数になっているから，$(N,V,[E+\delta E])$をとる状態数を$W(N,V,E)$とおくと，
+  \begin{eqnarray*}
+\begin{split}
+\displaystyle\sum_{r}p_{(N,V,E)}(r)=A\displaystyle\sum_{r}1=A\ W(N,V,E)
+  \end{split}
+\end{eqnarray*}
+となる．これが1と等しいから，
+  \begin{eqnarray*}
+\begin{split}
+A=\frac{1}{W(N,V,E)}
+  \end{split}
+\end{eqnarray*}
+となり，
+\begin{equation}
+\label{p1}
+p_{(N,V,E)}(r)=
+{}
+\begin{cases}
+\dfrac{1}{W(N,V,E)}\\[20pt]
+0
+    \end{cases}
+\end{equation}
+を得る．
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+\subsection{微視的状態数と分布関数}
+\begin{align}
+\fbox{
+a=u
+%\begin{tabular}{l}
+%\end{tabular}
+}
+\end{align}
+位相空間のなかの
+\begin{align}
+d^N\Gamma=d\bm{q}^Nd\bm{p}^N=dq_1\cdots dq_{3N}dp_1\cdots dp_{3N}
+\end{align}
+なる体積をもつ微小領域の中には，
+\begin{align}
+\frac{d^N\Gamma}{(2\pi\hbar)^{3N}}
+\end{align}
+だけの個数の，準古典的な状態が含まれることになる．
+まず，位相空間上でHamiltonianによって定まるエネルギーが$0$から$E$までの間に，一様に微視的状態数が存在しているとし，
+その間に含まれる微視的状態の総数を求める．それを$W_0(E)$とすれば，
+\begin{align}
+\label{mc1}
+\fbox{
+$W_0(E)=\dfrac{1}{(2\pi\hbar)^{3N}}\displaystyle\int_{0\leq H_N\leq E}d^N\Gamma\Theta\bigl(E-H_N(\bm{q},\bm{p})\bigr)$
+}
+\end{align}
+で与えられる．ただし，右辺の積分は
+\begin{align}
+\int\cdots\int_{0\leq H_N\leq E}\frac{dq_1dp_1}{(2\pi\hbar)}\cdots\frac{dq_{3N}dp_{3N}}{(2\pi\hbar)}
+\end{align}
+の略記である．ここで，$\Theta\bigl(E-H_N(\bm{q},\bm{p})\bigr)$はHeavisideの階段関数
+　\begin{equation}\label{heav}
+\Theta\bigl(E-H_N(\bm{q},\bm{p})\bigr)
+  = \begin{cases}
+      1  & (E\geq H_N(\bm{q},\bm{p}))\\[15pt]
+      0 & (E<H_N(\bm{q},\bm{p}))
+    \end{cases}
+\end{equation}
+である．(\ref{heav})はエネルギーが$E$以上となるような$H_N(\bm{q},\bm{p})$ではその値が0となるから，(\ref{heav})をつかって，状態数$W_0(E)$を記述することができる．また，エネルギーが$E$以下の状態数を求めたい場合に(\ref{mc1})の表記は便利である．\\
+%
+　エネルギー$E$は巨視的な量で連続値であるから，$W_0(E)$は変数$E$で微分することができる．$W_0(E)$を$E$で微分すると，$E$という点での微視的状態の密度$w(E)$は
+\begin{align}
+\label{mc2}
+w(E)=\frac{\partial W_0(E)}{\partial E}
+&=
+\dfrac{1}{(2\pi\hbar)^{3N}}\int_{0\leq H_N\leq E}d^N\Gamma
+\frac{\partial\Theta\bigl(E-H_N(\bm{q},\bm{p})\bigr)}{\partial E}\notag\\[10pt]
+&=
+\dfrac{1}{(2\pi\hbar)^{3N}}\int_{0\leq H_N\leq E}d^N\Gamma
+\delta\bigl(E-H_N(\bm{q},\bm{p})\bigr)
+\end{align}
+となる．ここで，公式$\dfrac{\partial \Theta(x)}{\partial x}=\delta(x)$を用いた．状態密度$w(E)$は単位エネルギーあたりの状態数という意味をもつ．\\
+　エネルギー$E$と$E+\delta E$の間にあるすべての可能な微視的状態の数は，エネルギーがそれぞれ$E+\delta E$，$E$以下の，微視的状態の総数$W_0(E+\delta E)$と$W_0(E)$の差を用いて，
+\begin{align}
+\label{mc3}
+W(E,\delta E)=W_0(E+\delta E)-W_0(E)．
+\end{align}
+(\ref{mc3})の右辺を$E$の周りでTaylar展開し1次までとれば，
+\begin{align}
+W(E,\delta E)=\frac{\partial W_0(E)}{\partial E}\delta E
+\end{align}
+となる．状態密度$w(E)$を用いれば，エネルギー$E$と$E+\delta E$の間にあるすべての可能な微視的状態の数は
+\begin{align}
+\label{mc4}
+\fbox{
+$W(E,\delta E)=w(E)\delta E$
+}
+\end{align}
+となる．一方，${}^N\Gamma$空間上での微視的状態数と位相体積の関係は
+\begin{align}
+\label{mc5}
+\fbox{
+$W(E,V,N,\delta E)=\dfrac{1}{(2\pi\hbar)^{3N}}\displaystyle\int_{E\leq H_N\leq E+\delta E}d^N\Gamma
+=\dfrac{1}{(2\pi\hbar)^{3N}}\displaystyle\int_{E\leq H_N\leq E+\delta E}d^N\Gamma\Omega({}^N\Gamma)$
+}
+\end{align}
+で与えられる．ただし，
+　\begin{equation}\label{o1}
+\Omega\bigl({}^N\Gamma\bigr)
+  = \begin{cases}
+      1  & (E\leq H_N\leq E+\delta E)\\[15pt]
+      0 & （\text{それ以外}）
+    \end{cases}
+\end{equation}
+と表されるから，
+\footnote{
+詳しく書けば$\Omega\bigl({}^N\Gamma\bigr)=\Omega(\bm{q},\bm{p})=\Omega(q_1,\cdots q_{3N},p_1,\cdots p_{3N})$
+}
+(\ref{mc2})と(\ref{mc4})を用いた，エネルギー空間上での微視的状態数
+\begin{align}
+\label{mc6}
+W(E,\delta E)=w(E)\delta E=\dfrac{1}{(2\pi\hbar)^{3N}}\int_{0\leq H_N\leq E}d^N\Gamma
+\delta\bigl(E-H_N(\bm{q},\bm{p})\bigr)\delta E
+\end{align}
+と(\ref{mc5})を比較すれば，
+\begin{align}
+\label{mc7}
+\fbox{
+$\Omega({}^N\Gamma)=\delta\bigl(E-H_N(\bm{q},\bm{p})\bigr)\delta E$
+}
+\end{align}
+という関係式が生まれる．ここで，$\Omega$の引数に${}^N\Gamma$と書いたのは，$\Omega$が${}^N\Gamma$空間の中の代表点の関数であることを示すためである．$\Omega({}^N\Gamma)$は，領域$H_N\in[E,E+\delta E]$で系の微視的状態の出現はすべて等しいことを意味する．\\
+　したがって，${}^N\Gamma$空間上でミクロカノニカル分布関数
+\begin{align}
+\label{mcdfG}
+\fbox{
+$\rho_{\rm{mc}}({}^N\Gamma)=\dfrac{\Omega({}^N\Gamma)}{W(E,V,N,\delta E)}
+=\dfrac{\delta\bigl(E-H_N(\bm{q},\bm{p})\bigr)\delta E}{W(E,V,N,\delta E)}$
+}
+\end{align}
+を定義することができる．一方，エネルギー空間上では(\ref{mc4})を用いれば，
+\begin{align}
+\label{mcdfE}
+\fbox{
+$\rho_{\rm{mc}}(E^\prime)=\dfrac{\Omega({}^N\Gamma)}{W(E,V,N,\delta E)}
+=\dfrac{\delta\bigl(E-H_N(\bm{q},\bm{p})\bigr)\delta E}{W(E,V,N,\delta E)}$
+}
+\end{align}
+である．これらの分布関数が確率の規格化の条件を満たしていることは，次のように確かめられる．
+\begin{align}
+\label{mc7}
+\dfrac{1}{(2\pi\hbar)^{3N}}\int d^N\Gamma\rho_{\rm{mc}}({}^N\Gamma)
+&=\dfrac{1}{(2\pi\hbar)^{3N}}\int d^N\Gamma\dfrac{\Omega({}^N\Gamma)}{W(E,V,N,\delta E)}\notag\\[10pt]
+&=\dfrac{1}{W(E,V,N,\delta E)}\dfrac{1}{(2\pi\hbar)^{3N}}\int d^N\Gamma\Omega({}^N\Gamma)\notag\\[10pt]
+&=\dfrac{1}{W(E,V,N,\delta E)}\cdot W(E,V,N,\delta E)=1
+\end{align}
+また，任意の物理量$A(\bm{q},\bm{p})$の熱平衡状態におけるミクロカノニカル集団平均値は
+\begin{align}
+\label{mcave}
+\fbox{
+$\Braket{A}_{\rm{mc}}\coloneqq \dfrac{1}{(2\pi\hbar)^{3N}}\displaystyle\int d^N\Gamma\rho_{\rm{mc}}({}^N\Gamma)A(\bm{q},\bm{p})$
+}
+\end{align}
+で定義される．この$\Braket{A}_{\rm{mc}}$が巨視的な観測値を与える．
+
+
+
+
+
+%
+\subsection{状態数$W(N,V,E)$とエントロピー}
+粒子数$N$，体積$V$，エネルギー$E$の孤立系の取りうる全状態数を$W(N,V,E)$とする．このとき，平衡状態を与える力学的状態の状態数$W_{\rm{eq}}(N,V,E)$とそれ以外の状態を与える力学的状態の状態数$W_{\rm{neq}}(N,V,E)$および，全状態数$W(N,V,E)$との間には
+\begin{align}
+\label{w}
+W(N,V,E)=W_{\rm{eq}}(N,V,E)+W_{\rm{neq}}(N,V,E)
+\end{align}
+が成立する．
+取りうる力学的状態の圧倒的大多数が，マクロな物理量から見て，平衡状態が区別がつけない状態（典型的状態）で占められる．すなわち，
+\begin{align}
+W_{\rm{eq}}(N,V,E)\gg W_{\rm{neq}}(N,V,E)．
+  \end{align}
+%%%%%%%%%
+これにより，(\ref{w})は
+\begin{align}
+\label{w1}
+W(N,V,E)\simeq W_{\rm{eq}}(N,V,E)
+  \end{align}
+  となる．
+  \paragraph{孤立系のエントロピー}
+  孤立系で変化が起きるとエントロピー$S$は増大，または一定となる．エントロピー	$S$は非現象的な量であり，エントロピー$S$が最大のとき，平衡状態となる．よって，平衡状態の$S$と$W_{\rm{eq}}(N,V,E)$は次のように関係づけれるだろう．
+\begin{align}
+\label{S1}
+S=f\biggl(W_{\rm{eq}}(N,V,E)\biggr)\simeq f\biggl(W(N,V,E)\biggr)
+  \end{align}
+  エントロピーの相加性の性質より
+  \begin{align}
+\label{S2}
+S_{\rm{A+B}}=S_{\rm A}+S_{\rm B}．
+  \end{align}
+  ここで，$S_{\rm{A}}$は系Aのエントロピー，$S_{\rm{B}}$は系Bのエントロピーであり，系Aと系Bを足した系A$+$Bのエントロピーを$S_{\rm{A+B}}$で表した．\\
+　状態数$W(N,V,E)$の場合は系Aの状態数を$W_{\rm{A}}$，系Bの状態数を$W_{\rm{B}}$とすると，系Aと系Bを足した系A$+$Bの状態数$W_{\rm{A+B}}$は
+　  \begin{align}
+\label{w2}
+W_{\rm{A+B}}=W_{\rm A}\times W_{\rm B}．
+  \end{align}
+  となる．(\ref{S1})より，
+  \begin{eqnarray*}
+\begin{split}
+S_{\rm{A+B}}=f\biggl(W_{\rm{A+B}}(N,V,E)\biggr)
+  \end{split}
+\end{eqnarray*}
+上式の左辺は(\ref{S2})より，
+\begin{eqnarray*}
+\begin{split}
+S_{\rm{A+B}}=S_{\rm A}+S_{\rm B}=f\biggl(W_{\rm{A}}(N,V,E)\biggr)+f\biggl(W_{\rm{B}}(N,V,E)\bigg)
+  \end{split}
+\end{eqnarray*}
+となり，上式の右辺は
+ \begin{eqnarray*}
+\begin{split}
+f\biggl(W_{\rm{A+B}}(N,V,E)\biggr)=f\biggl(W_{\rm{A}}(N,V,E)\times W_{\rm{B}}(N,V,E)\biggr)
+  \end{split}
+\end{eqnarray*}
+となるから，
+\begin{align}
+f\biggl(W_{\rm{A}}(N,V,E)\biggr)+f\biggl(W_{\rm{B}}(N,V,E)\bigg)=f\biggl(W_{\rm{A}}(N,V,E)\times W_{\rm{B}}(N,V,E)\biggr)
+\end{align}
+が得られる．
+となるが，(\ref{e5})と比較すると
+\begin{equation}
+\label{eA}
+\displaystyle\sum_{i=1}^3a_{ij}a_{ik}=\delta_{jk} .\ \ \ \ \ \ j,k=1,2,3\tag{A}
+\end{equation}
+が要求される．\\
+　次に，$S^\prime$系から$S$系への変換，すなわち逆変換を考えよう．逆変換が次のようにかけるとする．
+　 \begin{eqnarray*}
+\begin{split}
+\displaystyle\sum_{j=1}^3a_{jk}x^\prime_j
+=\displaystyle\sum_{i=1}^3\displaystyle\sum_{j=1}^3a_{jk}a_{ji}x_i
+=\displaystyle\sum_{i=1}^3\delta_{ki}x_i=x_k
+  \end{split}
+\end{eqnarray*}
+すなわち，
+\begin{align}
+x_k=\displaystyle\sum_{j=1}^3a_{jk}x_j^\prime
+  \end{align}
+により与えられる．そこで，
+  \begin{eqnarray*}
+\begin{split}\displaystyle\sum_{k=1}^3x_k x_k
+&=
+\left(
+\renewcommand{\arraystretch}{1.5}
+    \begin{array}{c}
+  x_1\\
+  x_2\\
+    x_3\\
+    \end{array}
+  \right)\cdot
+  \left(
+\renewcommand{\arraystretch}{1.5}
+   \begin{array}{c}
+  x_1\\
+  x_2\\
+    x_3\\
+    \end{array}
+  \right)\\[20pt]
+  &=%
+  \left(
+\renewcommand{\arraystretch}{1.5}
+    \begin{array}{c}
+     \displaystyle\sum_{j=1}^3a_{j1}x_j^\prime\\
+  \displaystyle\sum_{j=1}^3a_{j2}x_j^\prime\\
+    \displaystyle\sum_{j=1}^3a_{j3}x_j^\prime\\
+    \end{array}
+  \right)\cdot
+  \left(
+\renewcommand{\arraystretch}{1.5}
+    \begin{array}{c}
+  \displaystyle\sum_{i=1}^3a_{i1}x_i^\prime\\
+  \displaystyle\sum_{i=1}^3a_{i2}x_i^\prime\\
+    \displaystyle\sum_{i=1}^3a_{i3}x_i^\prime\\
+    \end{array}
+  \right)\\[20pt]
+  &=
+\Biggl(\displaystyle\sum_{j=1}^3a_{j1}x_j\Biggr)\Biggl(\displaystyle\sum_{i=1}^3a_{i1}x_i\Biggr)
++\Biggl(\displaystyle\sum_{j=1}^3a_{j2}x_j\Biggr)\Biggl(\displaystyle\sum_{i=1}^3a_{i2}x_i\Biggr)
++\Biggl(\displaystyle\sum_{j=1}^3a_{j3}x_j\Biggr)\Biggl(\displaystyle\sum_{i=1}^3a_{i3}x_i\Biggr)\\[10pt]
+&=\displaystyle\sum_{j=1}^3\displaystyle\sum_{k=1}^3\Biggl(\displaystyle\sum_{i=1}^3a_{kj}a_{ki}\Biggr)x_jx_i
+  \end{split}
+\end{eqnarray*}
+となり，(\ref{e5})より，
+\begin{equation}
+\label{eB}
+\displaystyle\sum_{i=1}^3a_{jk}a_{ki}=\delta_{ij} .\ \ \ \ \ \ i,j=1,2,3\tag{B}
+\end{equation}
+が要求される．\\
+%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%
+このことから，旧座標と回転した座標が直交座標系のとき，
+　\begin{numcases}
+{}
+\label{A}
+\displaystyle\sum_{i=1}^3a_{ij}a_{ik}=\delta_{jk} .\ \ \ \ \ \ j,k=1,2,3&\\[10pt]
+\label{B}
+\displaystyle\sum_{i=1}^3a_{jk}a_{ki}=\delta_{ij} .\ \ \ \ \ \ i,j=1,2,3&
+\end{numcases}
+であることが要請されることがわかる．\\
+　(\ref{A})は，行列Aの列の成分が互いに直交し，自分自身との内積が1になることを表している．また，(\ref{B})は行列Aの転地行列${}^tA$の列の成分が互いに直交し，自分自身との内積が1になることを表している．\\
+　(\ref{A})，(\ref{B})の性質から，
+　\begin{align}
+　\label{E}
+　{}^tAA=E
+　\end{align}
+　であることがわかる．(\ref{E})の性質を満たす，正方行列$A$を直交行列という．

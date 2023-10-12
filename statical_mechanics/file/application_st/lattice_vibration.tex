@@ -1,0 +1,624 @@
+\part{格子振動}
+　量子系として1つの量子状態$\ket{\psi}$のみをとるような系を考える．すると状態$\ket{\psi}$と物理量に相当する演算子$\hat{A}$できまるスカラー量
+\begin{align}
+\label{ev}
+\Braket{\hat{A}}_{\psi}=\Braket{\psi|\hat{A}|\psi}
+\end{align}
+を，物理量$\hat{A}$の$\ket{\psi}$に対する期待値として定義できる．期待値を計算することができれば，考えている系の物理量の観測値をあたえることができる．\\
+　量子系が多数の系によって記述された場合，統計集団の考え方を導入することによって，観測値はどのような表式で記述できるかを本書では述べる．
+
+
+
+
+
+
+%%
+\section{状態密度}
+量子統計力学の計算で，量子状態に関する和を積分に変換する必要がしばしば起こる．この変換は，周期的箱の量子状態を求めてからバルクの極限での状態和を計算するときに必要となる．この変換は微分積分学の区分求積法による数学的なものであるが，統計力学的計算を実行する際の一つの重要なステップである．
+\subsection{1次元の状態和}
+最初に，1次元運動の運動量状態に関する状態和を考えよう．$A(p)$を運動量$p$の任意関数として，
+\be\label{sum1}
+\displaystyle\sum_\kappa A(p_{\kappa})
+\ee
+を考える．
+1次元の1粒子の運動量固有状態は，量子数$\kappa$を用いて，
+\be\label{1dp}
+\fbox{
+$p_{\kappa}=\left(
+\dfrac{2\pi\hbar}{L}
+\right)\kappa,\ \ \ \ \kappa=\cdots,-1,0,1,\cdots$
+}
+\ee
+で指定される．$L$は1次元の箱の長さをである．離散的運動量状態は等間隔に分布するから，微小な運動量区間$\Delta p$は$\nu+1,\nu$番目の運動量固有状態の差から
+\be
+\Delta p=p_{\nu+1}-p_{\nu}=\dfrac{2\pi\hbar}{L}
+\ee
+となる．規格化の長さ$L$を大きくするにつれ，隣り合う状態の間隔$2\pi\hbar/L$は狭くなる．\\
+　微小な運動量区間$\Delta p$の状態数を$\Delta n$で表す．比$\Delta n/\Delta p$について考えよう．この比の分母分子を$\Delta n$で割ると，
+\be
+\frac{\Delta n}{\Delta p}=\frac{\Delta n}{\Delta p}\frac{\Delta n}{\Delta n}
+=\frac{1}{\Delta p/\Delta n}
+=\frac{1}{\text{状態当たりの運動量の区間}}
+=\frac{L}{2\pi\hbar}
+\ee
+を得る．この比$\Delta n/\Delta p$は，規格化の長さ$L$に比例して増加することがわかる．さて，次の和
+\be\label{sum2}
+\displaystyle\sum_l A(p_{l})\frac{\Delta n}{\Delta p^{(l)}}\Delta p^{(l)}
+\ee
+を考えよう．$\Delta p^{(l)}$は$l$番目の運動量の区間，$p_l$は区間$\Delta p^{(l)}$中の代表値である．(\ref{sum1})，(\ref{sum2})における和はともに同じ次元である．\\　
+　次に示す条件をみたす場合には，(\ref{sum1})と(\ref{sum2})は互いに近い値を持つ．
+　\begin{screen}
+\begin{enumerate}[\expandafter\maru 1]
+\item 関数$A(p)$はなめらかに変化する$p$の関数である．\\
+\item $\Delta p^{(l)}$中には多数の状態があり，その結果，$\Delta n/\Delta p^{(l)}$を状態密度とみなせる．
+\end{enumerate}
+\end{screen}
+2番目の条件は，$L$を十分長くとるときの運動量状態$\{p_{\kappa}\}$に対して成立する．バルク極限で(\ref{sum1})と(\ref{sum2})は等しくなる：
+\be
+{\rm{Lim}}\displaystyle\sum_{\kappa}A(p_{\kappa})
+={\rm{Lim}}\displaystyle\sum_l A(p_{l})\frac{\Delta n}{\Delta p^{(l)}}\Delta p^{(l)}．
+\ee
+区間を無限小にする極限（$\lim_{L\to\infty}$）で右辺の積分は
+\be
+\lim_{L\to\infty}\displaystyle\sum_l A(p_{l})\frac{\Delta n}{\Delta p^{(l)}}\Delta p^{(l)}
+=\int dp\left(
+\frac{dn}{dp}
+\right)A(p)
+\ee
+となる．ここで状態数$n$が実際には運動量$p$に依存していることに注意すると，
+\be
+	\frac{dn}{dp}\equiv
+	\lim_{\Delta p\to0}\frac{n(p+\Delta p)-n(p)}{\Delta p}
+	=\lim_{\Delta p\to0}\frac{\Delta n}{\Delta p}=\frac{L}{2\pi\hbar}
+\ee
+となる．これは1次元運動量空間での状態密度（以下$D(p)$で記す）である．要約すると，
+\be\label{eq1}
+\fbox{
+$\lim_{L\to\infty}\displaystyle\sum_{\kappa}A(p_{\kappa})
+=\int_{-\infty}^{\infty}dpD(p)A(p)
+$
+}
+\ee
+が得られる．条件\maru1は関数$A$の性質に依存することを強調しておく．もし$A(p)$がある点で特異点を持てば，この条件は満足されず，(\ref{eq1})の極限は成立しないことがある．このような場合は実際に生じる．さらに，状態密度$D(p)\equiv dn/dp=L/(2\pi\hbar)$が運動量の値に依存しない点にも注意しよう．
+
+
+
+
+
+
+
+
+
+%
+\subsection{3次元への拡張}\label{12}
+1次元の場合と同様にして，3次元の運動の運動量状態に関する状態和
+\be\label{sum31}
+\displaystyle\sum_{\vp_\kappa} A(\vp_{\kappa})\equiv
+\displaystyle\sum_{p_{x,j}}
+\displaystyle\sum_{p_{y,k}}
+\displaystyle\sum_{p_{z,l}}
+A(\vp_{\kappa})
+\ee
+を考える．3次元の周期的立方体の境界条件のもとでは，1粒子量子の運動量固有状態は，三つの量子数
+\be\label{3dp}
+\fbox{
+$p_{x,j}=\left(
+\dfrac{2\pi\hbar}{L}
+\right)j,\ \ 
+p_{y,k}=\left(
+\dfrac{2\pi\hbar}{L}
+\right)k,\ \ 
+p_{z,l}=\left(
+\dfrac{2\pi\hbar}{L}
+\right)l$
+}
+\ee
+で指定される．$L$は立方体の1辺の長さ，量子数$(j,k,l)$は整数の組である．簡単のため，運動量状態を1個のギリシア文字$\kappa$で表す：
+\be
+\vp_{\kappa}\equiv(p_{x,j},p_{y,k},p_{z,l})．
+\ee
+微小な運動量体積要素$\Delta^3 p$は
+\be
+\Delta^3 p\equiv\Delta p_x\Delta p_y\Delta p_z=\left(\dfrac{2\pi\hbar}{L}\right)^3
+\ee
+となる．微小な運動量体積要素$\Delta^3 p$の状態数を$\Delta n$で表す．比$\Delta n/\Delta^3 p$について考えよう．この比の分母分子を$\Delta n$で割ると，
+\be
+\frac{\Delta n}{\Delta^3 p}=\frac{\Delta n}{\Delta^3 p}\frac{\Delta n}{\Delta n}
+=\frac{1}{\Delta^3 p/\Delta n}
+=\frac{1}{\text{状態当たりの運動量体積要素}}
+=\left(\frac{L}{2\pi\hbar}\right)^3
+\ee
+を得る．さて，次の和
+\be\label{sum32}
+\displaystyle\sum_{\kappa^\prime} A(\vp_{\kappa^\prime})\frac{\Delta n}{\Delta^3 p^{(\kappa^\prime)}}\Delta^3 p^{(\kappa^\prime)}
+\ee
+を考えよう．$\Delta^3 p^{(\kappa^\prime)}$は$\kappa^\prime$番目の運動量体積要素，$p_\kappa^\prime$は体積要素$\Delta p^{(\kappa^\prime)}$中の代表値である．1次元の場合と同様に，(\ref{sum31})，(\ref{sum32})における和はともに同じ次元である．\\
+　$L$を十分長くとるとき，運動量状態$\{\vp_{\kappa}\}$に対して$\Delta n/\Delta^3 p^{(\kappa^\prime)}$が状態密度と見なせるから，バルク極限で(\ref{sum31})と(\ref{sum32})は等しくなる：
+\be
+{\rm{Lim}}\displaystyle\sum_{\vp_\kappa}A(\vp_{\kappa})
+={\rm{Lim}}\displaystyle\sum_{\kappa^\prime} A(\vp_{\kappa^\prime})\frac{\Delta n}{\Delta^3 p^{(\kappa^\prime)}}\Delta^3 p^{(\kappa^\prime)}．
+\ee
+区間を無限小にする極限（$\lim_{L\to\infty}$）で右辺の積分は
+\be
+\lim_{L\to\infty}
+\displaystyle\sum_{\kappa^\prime} A(\vp_{\kappa^\prime})\frac{\Delta n}{\Delta^3 p^{(\kappa^\prime)}}\Delta^3 p^{(\kappa^\prime)}
+=\int d^3p\left(
+\frac{dn}{d^3p}
+\right)A(p)
+\ee
+となる．ここで，
+\be
+	\frac{dn}{d^3p}\equiv
+	=\lim_{\Delta^3 p\to0}\frac{\Delta n}{\Delta^3 p}=\left(\frac{L}{2\pi\hbar}\right)^3
+\ee
+となる．これは3次元運動量空間での状態密度（以下$D(\vp)$で記す）である．要約すると，
+\be\label{eq2}
+\fbox{
+$\lim_{L\to\infty}\displaystyle\sum_{\kappa^\prime} A(\vp_{\kappa^\prime})\frac{\Delta n}{\Delta^3 p^{(\kappa^\prime)}}\Delta^3 p^{(\kappa^\prime)}
+=\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}\int_{-\infty}^{\infty}d^3pD(\vp)A(\vp)
+$
+}
+\ee
+が得られ，3次元においても拡張することができた．
+
+
+
+
+
+
+
+
+
+
+
+
+%
+\subsection{電子のスピン縮退度を考慮した場合の状態和}
+電子のスピン縮退度を考慮した場合について，考えよう．体積$V$中に閉じ込められている質量$m$，スピン$s$の自由フェルミ気体の量子状態$\kappa$は，運動量$\vp$とスピンの$z$成分$m_z=-s,-s+1,\cdots,s$で指定される．すなわち，$\kappa\equiv\{\vp,m_z\}$であり，一つの$\vp$の値は$2s+1$重に縮退している．そのエネルギーを$\epsilon_{\kappa}$とすると，一般に状態$\kappa$に関する和は具体的に書くと，
+\be\label{3dssum1}
+\displaystyle\sum_{\kappa}=
+\displaystyle\sum_{p_x}\displaystyle\sum_{p_y}\displaystyle\sum_{p_z}\displaystyle\sum_{m_z}
+=\displaystyle\sum_{\vp}\displaystyle\sum_{m_z}
+\ee
+である．スピンの$z$成分についての和は$g=\displaystyle\sum_{m_z}=(2s+1)$とおくと，\ref{12}節と同様の手続きで，
+\be\label{3dssum2}
+\displaystyle\sum_{\kappa}
+=g\displaystyle\sum_{\vp}=g\displaystyle\sum_{\vp}
+\frac{\Delta n}{\Delta^3 p}\Delta^3 p
+\to\frac{gV}{(2\pi\hbar)^3}\int d^3p
+=\frac{(2s+1)V}{(2\pi\hbar)^3}\int d^3p=\int d^3pD(\vp)
+\ee
+のように，積分に変えることができる．ここで，
+\be
+D(\vp)=\frac{dn}{d^3p}=\frac{gV}{(2\pi\hbar)^3}=\frac{(2s+1)V}{(2\pi\hbar)^3}
+\ee
+は運動量空間における状態密度である．ここで，電子のスピン縮退度は$2$であるから，$2s+1=2$，$\therefore s=1/2$である．この場合，状態密度$D(\vp)$は
+\be\label{eq3}
+\fbox{
+$D(\vp)=\dfrac{dn}{d^3p}=\dfrac{2V}{(2\pi\hbar)^3}
+$
+}
+\ee
+が得られる．この結果式(\ref{eq3})を用いて，規格化条件の式(\ref{})を積分に変換すると，電子数密度$n=(N/V)$は
+\be\label{n2}
+\fbox{
+$n\text{（数密度）}
+={\rm{Lim}}\dfrac{1}{V}\displaystyle\sum_{\kappa}n_{\kappa}
+={\rm{Lim}}\dfrac{1}{V}\displaystyle\sum_{\kappa}f(\epsilon_{\kappa})
+=\dfrac{1}{V}\displaystyle\int d^3pD(\vp)f\left(\dfrac{p^2}{2m}\right)
+$
+}
+\ee
+となる．次に，同じ系のエネルギー密度を考えよう．
+\be\label{e2}
+\fbox{
+$e\text{（エネルギー密度）}
+={\rm{Lim}}\dfrac{1}{V}\displaystyle\sum_{\kappa}\epsilon_{\kappa}f(\epsilon_{\kappa})
+=\dfrac{1}{V}\displaystyle\int d^3pD(\vp)\dfrac{p^2}{2m}f\left(\dfrac{p^2}{2m}\right)
+$
+}
+\ee
+を得る．(\ref{n2})と(\ref{e2})は，周期的立方体の境界条件で運動量固有値を用いて得られた．しかし，バルクの極限をとったこの条件は境界条件によらない．\\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+\section{縮退した電子の熱容量（定性的議論）}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+\section{縮退した電子の熱容量（定性的計算）}
+
+となる．次に，同じ系のエネルギー密度を考えよう．
+\be\label{e3}
+\fbox{
+$\dfrac{E(T,V)}{V}
+=\dfrac{\sqrt{2}m^{3/2}}{\pi^2\hbar^3}\displaystyle\int_0^{\infty}d\epsilon\epsilon^{3/2}f(\epsilon)
+$
+}
+\ee
+\be\label{n3}
+\fbox{
+$n
+=\dfrac{\sqrt{2}m^{3/2}}{\pi^2\hbar^3}\displaystyle\int_0^{\infty}d\epsilon\epsilon^{1/2}f(\epsilon)
+$
+}
+\ee
+(\ref{e3})と(\ref{n3})の右辺の積分は次のように計算される．まず
+\be
+x\equiv\beta\epsilon,\ \ \ \ \ \alpha\equiv\beta\mu(\ \gg1)
+\ee
+を導入する．ここで，$\alpha\equiv\beta\mu(\ \gg1)$を仮定している．つまり，低温である$（\beta^{-1}=k_{\rm B}T\ll1）$を仮定している．\\
+　関数
+\be\label{f}
+F(x)\equiv\frac{1}{e^{x-\alpha}+1},\ \ \ \ \ \ -\frac{dF}{dx}=-\Fp=\frac{e^{x-\alpha}}{(e^{x-\alpha}+1)^2}\ (\ >0)
+\ee
+を考察しよう．関数$F(x)$は$x-\alpha\ll1$のとき，$1$に近づく．$x-\alpha\gg1$のとき，$F(x)$は指数関数的にゼロへと小さくなる．関数$-dF/dx$は$x=\alpha$の近傍で鋭いピークを持つことに注意せよ．次の積分を考える：
+\be\label{i1}
+\fbox{
+$I\equiv
+\displaystyle\int_0^{\infty}dxF(x)\frac{dG(x)}{dx}；\ \ \ \ F(x)\equiv\frac{1}{e^{x-\alpha}+1}
+$
+}
+\ee
+$G(x)$は正則な関数で，$x=\alpha$のまわりで（無限回）微分可能であるとする．(\ref{i1})の積分はFermi-Dirac積分と呼ばれる．部分積分により
+\begin{align}
+I&=\biggl[
+F(x)G(x)
+\biggr]_{x=0}^{x=\infty}
+-\int_{0}^{\infty}dxG(x)\frac{dF(x)}{dx}\nn[10pt]
+%
+&=
+F(\infty)G(\infty)-F(0)G(0)
+-\int_{0}^{\infty}dxG(x)\frac{dF(x)}{dx}
+\end{align}
+%
+ここで，
+\begin{align}
+F(\infty)&=
+\lim_{x\to\infty}F(x)=\lim_{x\to\infty}\frac{1}{e^{x-\alpha}+1}=0\nn[10pt]
+F(0)&=\lim_{x\to0}F(x)=\frac{1}{e^{-\alpha}+1}=1,\ \ \ \ (\because\alpha\gg1)
+\end{align}
+であるから，
+\begin{align}\label{feint}
+I=-G(0)
+-\int_{0}^{\infty}dxG(x)\frac{dF(x)}{dx}
+\end{align}
+を得る．関数$G(x)$を$x=\alpha$のまわりでTaylar展開する：
+\begin{align}\label{gtay}
+G(x)=G(x)\Bigr|_{x=a}&+(x-\alpha)\frac{dG(x)}{dx}\Bigr|_{z=a}
++\frac{1}{2!}(x-\alpha)^2\frac{d^2G(x)}{dx^2}\biggr|_{x=\alpha}\nn[10pt]
+&+\cdots+\frac{1}{n!}(x-\alpha)^n\frac{d^nG(x)}{dx^n}\biggr|_{x=\alpha}+\cdots．
+\end{align}
+この展開式を(\ref{feint})に代入し，項ごとに積分すると
+\begin{align}\label{feint2}
+I=-G(0)
+&-\int_{0}^{\infty}(x-\alpha)^0G(x)\Bigr|_{x=a}\frac{dF(x)}{dx}\nn[10pt]
+&-\int_{0}^{\infty}(x-\alpha)^1\frac{dG(x)}{dx}\Bigr|_{z=a}\frac{dF(x)}{dx}\nn[10pt]
+&-\cdots\cdots
+\end{align}
+となる．(\ref{feint2})の各項の積分を実行するために
+\begin{align}
+J_n&=-\int_0^{\infty}dx(x-\alpha)^n\frac{dF(x)}{dx}\nn
+\intertext{$y=x-\alpha$と変数変換し，(\ref{f})を使用して，}
+&=-\int_{-\alpha}^{\infty}dyy^n\frac{e^y}{(e^y+1)^2}\nn
+\intertext{仮定$\alpha\gg1$より，}
+&
+-\simeq\int_{\infty}^{\infty}dyy^n\frac{e^y}{(e^y+1)^2}
+=-\int_{\infty}^{\infty}dyy^n\frac{e^y}{(e^y+1)(e^y+1)}
+\end{align}
+つまり，積分
+\be\label{feint3}
+\fbox{
+$J_n=\displaystyle\int_{\infty}^{\infty}dy\dfrac{y^n}{(e^y+1)(1+e^{-y})}$
+}
+\ee
+を考えればよい．\\
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+\subsection{}
+　積分$J_n$は，次のようにして求めることができる．次の積分$I(p)$を考える：
+\be\label{ip1}
+I(p)=\int_{\infty}^{\infty}dx\frac{e^{ipx}}{(e^x+1)(1+e^{-x})}．
+\ee
+また，積分$I(p)$は
+\be
+e^{ipx}=\displaystyle\sum_{n=0}^{\infty}\frac{(ip)^n}{n!}
+\ee
+と展開できるので，
+\be\label{ip2}
+I(p)=\displaystyle\sum_{n=0}^{\infty}\frac{(ip)^n}{n!}
+\int_{\infty}^{\infty}dx\frac{x^n}{(e^x+1)(1+e^{-x})}=\displaystyle\sum_{n=0}^{\infty}\frac{(ip)^n}{n!}J_n
+\ee
+と書ける．\\
+　積分$I(p)$は複素積分を用いて，求めることができる．
+%ここにI(p)の計算を書きたい．
+
+
+
+
+
+
+
+
+
+\be\label{ipc2}
+I(p)=\frac{\pi}{\sinh(\pi p)}
+\ee
+%
+\subsection{Sommerfeld展開公式}
+(\ref{ip2})より，積分$I(p)$は
+\be\label{ip3}
+I(p)=\displaystyle\sum_{n=0}^{\infty}\frac{(ip)^n}{n!}J_n
+=J_0+\frac{(ip)^1}{1!}J_1+\frac{(ip)^2}{2!}J_2+\cdots
+\ee
+と書ける．(\ref{ip3})右辺の各項の$J_n,\ \ (n=0,1,2,\ldots)$の値について考える．$n$が奇数のとき，(\ref{feint3})の被積分関数
+\be
+H(y)\equiv\dfrac{y^n}{(e^y+1)(e^{-y}+1)},\ \ \ \text{（$n$は奇数）}
+\ee
+は
+\be
+H(-y)=\dfrac{(-y)^n}{(e^{(-y)}+1)(e^{-(-y)}+1)}
+=-\dfrac{y^n}{(e^y+1)(e^{-y}+1)}-H(y),\ \ \ \text{（$n$は奇数）}
+\ee
+となり，$y$に関して奇関数となる．したがって，$n$が奇数のとき，積分$J_n$は$0$となる．$n$が偶数のときは，(\ref{ipc2})と(\ref{ip3})から，積分値は
+\begin{align}
+I(p)&
+=J_0+\frac{(ip)^2}{2!}J_2+\frac{(ip)^4}{4!}J_4\cdots\nn[10pt]
+&=1-\frac{1}{6}(\pi p)^2
+\end{align}
+\be\label{jnum}
+J_0=1,\ \ \ J_2=\frac{\pi^2}{3},\ \ \ J_4=\frac{7\pi^4}{15},\ \ \ \cdots
+\ee
+となる．(\ref{f})，(\ref{feint})，(\ref{feint})，(\ref{gtay})，(\ref{feint2})と(\ref{jnum})を用いると，Fermi-Dirac積分は
+\begin{align}
+I&=-G(0)
++J_0G(x)\Bigr|_{x=a}+J_2\frac{d^2G(x)}{dx^2}\Bigr|_{x=a}+J_4\frac{d^4G(x)}{dx^4}\Bigr|_{x=a}+\cdots
+\end{align}
+\be\label{sf}
+\fbox{
+$I=\displaystyle\int_0^{\infty}dxF(x)\dfrac{dG(x)}{dx}
+=G(x)\Bigr|_{x=a}-G(0)+\dfrac{\pi^2}{6}\dfrac{d^2G(x)}{dx^2}\Bigr|_{x=a}+\cdots$
+}
+\ee
+と求まる．表式(\ref{sf})は，$\alpha\gg1$でかつ関数$G(x)$は$x=\alpha$で緩やかに変化する場合に有効であることに注意せよ．(\ref{sf})はSommerfeld展開公式として知られている．
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+\subsection{自由電子の数密度$n$と内部エネルギー密度の計算}
+さて，Sommerfeld展開公式(\ref{sf})を用いて，自由電子の数密度$n$と内部エネルギー密度を求めてみよう．まず，数密度$n$から求める．公式(\ref{sf})を(\ref{n3})の$\epsilon$積分の計算に適用する．積分
+\be
+\displaystyle\int_{0}^{\infty}d\epsilon\ \epsilon^{1/2}f(\epsilon)
+\ee
+に対して，$x=\beta\epsilon$と変数変換すると，
+\be\label{epint1}
+\fbox{
+$
+\displaystyle\int_{0}^{\infty}d\epsilon\ \epsilon^{1/2}f(\epsilon)
+=\displaystyle\int_{0}^{\infty}\dfrac{dx}{\beta}\sqrt{\dfrac{x}{\beta}}F(x)
+=\beta^{-3/2}\displaystyle\int_{0}^{\infty}dx\sqrt{x}F(x)
+$
+}
+\ee
+と書ける．$F(x)\equiv f(x/\beta)$と定義した．ここで
+\be
+G(x)=\frac{2}{3}x^{3/2},\ \ \ \frac{dG(x)}{dx}=x^{1/2},\ \ \ \frac{d^2G(x)}{dx^2}=\frac{1}{2}x^{-1/2},\ \ \ \frac{d^4G(x)}{dx^4}=\frac{3}{8}x^{-5/2}
+\ee
+を選ぶと，
+\begin{align}
+\label{epint2}
+\displaystyle\int_{0}^{\infty}d\epsilon\ \epsilon^{1/2}f(\epsilon)
+&=\beta^{-3/2}\displaystyle\int_{0}^{\infty}dx\sqrt{x}F(x)\nn[10pt]
+&=\beta^{-3/2}\left[
+G(x)\Bigr|_{x=a}-G(0)+\dfrac{\pi^2}{6}\dfrac{d^2G(x)}{dx^2}\Bigr|_{x=a}
++\dfrac{7\pi^4}{360}\dfrac{d^4G(x)}{dx^4}\Bigr|_{x=a}+\cdots
+\right]\nn[10pt]
+%
+&=\beta^{-3/2}\left[
+\frac{2}{3}\alpha^{3/2}
++\dfrac{\pi^2}{6}\cdot\frac{1}{2}\alpha^{-1/2}
++\dfrac{7\pi^4}{360}\cdot\frac{3}{8}\alpha^{-5/2}+\cdots
+\right]\nn
+%
+\intertext{$\alpha=\beta\mu$であるから，$\dfrac{2}{3}(\beta\mu)^{3/2}$でくくって整理すると}
+%
+&=\frac{2}{3}\mu^{3/2}\left[
+1
++\dfrac{\pi^2}{8}(\beta\mu)^{-2}
++\dfrac{7\pi^4}{640}(\beta\mu)^{-4}+\cdots
+\right]
+\end{align}
+となる．これを用いると，(\ref{n3})から
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+\subsection{}
+%%%%%%%%%%%%%%%%%%%%%%
+　\begin{thebibliography}{99}
+\item
+{鈴木彰・藤田重次(2008) 『統計熱力学の基礎』（共立出版）}
+\item
+{砂川重信(1991)
+『量子力学』（岩波書店）}
+\end{thebibliography}
+\end{document}
+
+

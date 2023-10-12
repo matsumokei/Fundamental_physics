@@ -1,0 +1,394 @@
+\part{古典的カノニカル集団}
+\section{全系の熱平衡と部分系の熱平衡}
+\subsection{問題設定}
+まず，全体としてエネルギー$E$，粒子数$N$，体積$V$を持つマクロの孤立系を考える．孤立系ということはミクロカノニカル集団を適用することができる．これを$N_1$個の粒子と$N_2$個の粒子からなる2個のマクロ部分系に分ける．マクロ部分系とは巨視的とみなせるくらい自由度の大きい部分のことであり，部分系はそれ自身としては閉じておらず，その周囲の環境からの影響を絶えず受けている．\\
+　部分系に分けたことで，体積もそれに伴い$V_1$と$V_2$に隔てられ，この二つの量については互いに変化しないものとする．すなわち，ミクロカノニカル集団が適用される系の部分系を考え，各部分系の体積と粒子数は固定されているが各系のエネルギーは変化しつつ，系は熱平衡状態に保たれているような状況を考察することになる．\\
+　このとき二つの系は，互いにエネルギーを交換することはできるが，遠距離の相互作用はないとすれば，全系のHamiltonianは，各部分のHailtonianの和
+\begin{align}\label{h}
+H_N=H_1+H_2
+\end{align}
+で書くことができる．したがって，エネルギーも各部分の和
+\begin{align}\label{e}
+E_N=E_1+E_2=\text{一定}
+\end{align}
+で表される．これは二つの部分系がほとんど独立であるとする近似である．この場合に全系と，部分系がそれぞれエネルギー$E_1$，$E_2$を持っているときの状態数の関係式は，次のようになる：
+\begin{align}
+\label{wst}
+\fbox{
+$W(E,V,N)=W_1(E_1,V_1,N_1)W_2(E_2,V_2,N_2)$
+}．
+\end{align}
+$W$は系全体の状態数，$W_1$，$W_2$は各部分系の状態を表す．
+\footnote{%
+なぜ系全体の状態数はかけ算なのかというと，系1，系2の状態数がそれぞれ3通りとすると，全系では$3\times3=9$通りとなるからである．
+}\\
+　ここで，全系が熱平衡状態である場合を考える．これはミクロカノニカル集団と状況は同じなので，状態数$W(E,V,N)$は系のなかで何が起こっていようが不変であるはずである．つまり，\\
+%
+%
+%
+　熱力学的にはこれは温度平衡，または熱平衡と呼ばれる状態である．つまり，この平衡状態では，部分系どうしの温度が等しいはずである．このことを確認してみよう．\\
+　まず，部分系1のエネルギーに注目してみる．エネルギー$E_1$が微小量だけ変化したときの状態数の変化は(\ref{wst})から，合成関数の微分法より
+　\begin{align}
+\label{te1}
+\frac{\partial W(E,V,N)}{\partial E_1}
+=\left(\frac{\partial W_1(E_1)}{\partial E_1}\right)W_2(E_2)+W_1(E_1)\left(\frac{\partial W_2(E_2)}{\partial E_2}\right)\frac{\partial E_2}{\partial E_1}
+\end{align}
+となる．ここで，全系としては孤立系であり，また，ミクロカノニカル集団で扱われたような熱平衡状態にあるので，全系の状態数は変化しない．すなわち，$W(E,V,N)=$定数より
+\begin{align}\label{te2}
+\frac{\partial W(E,V,N)}{\partial E_1}=0
+\end{align}
+である．また，エネルギーの等式(\ref{e})を外微分して，
+\begin{align}\label{eg}
+dE=dE_1+dE_2=0\ \ \ \ \to \ \ \ \ dE_1=-dE_2
+\end{align}
+であるので，次の等式が得られる：
+\begin{align}
+\frac{\partial W_1(E_1)}{\partial E_1}W_2(E_2)=W_1(E_1)\frac{\partial W_2(E_2)}{\partial E_2}．
+\end{align}
+さらに両辺を$W_1(E_1)W_2(E_2)$でわり，一般に$\dfrac{1}{W(E)}\dfrac{\partial W(E)}{\partial E}=\dfrac{\partial \ln W(E)}{\partial E}$が成り立つことに注意すると，
+\begin{align}
+\frac{\partial (\ln W_1(E_1))}{\partial E_1}=\frac{\partial (\ln W_2(E_2))}{\partial E_2}．
+\end{align}
+上式において，左辺と右辺が等しいためには両辺が$E_1$，$E_2$によらない定数に等しくなければならないので，
+\begin{align}\label{te2}
+\frac{\partial (\ln W_1(E_1))}{\partial E_1}=\frac{\partial (\ln W_2(E_2))}{\partial E_2}=\text{定数}
+\end{align}
+である．よって，それぞれの状態数についてBoltzmannの関係式
+\begin{align}\label{bol}
+S(E,V,N)=k_{\rm B}\ln W(E,V,N)
+\end{align}
+を適用すれば，熱力学の関係式$(\partial S/\partial E)_{N,V}=1/T$から，
+\begin{align}
+\label{te}
+\fbox{
+$T_1=T_2$
+}
+\end{align}
+となり，部分系の平衡状態とは「各部分系の温度が等しいことである」ということが，統計力学的に確認できた．
+　\begin{itembox}[l]{等確率の原理}
+「エネルギーが$E$となる各力学的な状態は，等確率で出現する．」
+\end{itembox}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+\subsection{部分系の確率分布について}
+全系が熱平衡状態にあるとするとき第1の系が$6N_1$次元の位相空間の点$({}^{N_1}\Gamma)$に見いだされる確率$\rho({}^{N_1}\Gamma)$を求めよう．\\
+　部分系どうしは独立なので，確率的には，独立事象であり，したがって分布関数も積で表される．
+\begin{align}\label{prob}
+\fbox{
+$\rho_{\rm{mc}}({}^{N}\Gamma)=\rho_1({}^{N_1}\Gamma)\rho_2({}^{N_2}\Gamma)$
+}
+\end{align}
+部分系1の分布関数$\rho({}^{N_1}\Gamma)$は全系の分布関数$\rho_{\rm{mc}}({}^{N}\Gamma)=\rho_{\rm{mc}}({}^{N_1}\Gamma,{}^{N_2}\Gamma)$を変数${}^{N_1}\Gamma$で固定して，${}^{N_2}\Gamma$のすべての場合で積分したものである：
+\begin{align}{mc1}
+\rho({}^{N_1}\Gamma)
+&=\frac{1}{(2\pi\hbar)^{3N_2}}\int d^{N_2}\Gamma\rho_{\rm{mc}}({}^{N}\Gamma)\notag\\[10pt]
+&=\frac{1}{(2\pi\hbar)^{3N_2}}\int d^{N_2}\Gamma\dfrac{\delta\bigl(E-H_N(\bm{q},\bm{p})\bigr)\delta E}{W(E,V,N,\delta E)}．
+\end{align}
+ここで，孤立系におけるミクロカノニカル分布関数
+\begin{align}
+\label{mcdfG}
+\fbox{
+$\rho_{\rm{mc}}({}^N\Gamma)
+=\dfrac{\delta\bigl(E-H_N(\bm{q},\bm{p})\bigr)\delta E}{W(E,V,N,\delta E)}
+=\dfrac{\delta\bigl(E-H_{N_1}-H_{N_2}\bigr)\delta E}{W(E,V,N,\delta E)}$
+}
+\end{align}
+を適用した．さて，第2の系の状態密度を
+\begin{align}
+w_2(E-H_{N_1},V_2,N_2)\coloneqq
+\frac{1}{(2\pi\hbar)^{3N_2}}\int d^{N_2}\Gamma\delta(E-H_{N_1}-H_{N_2})
+\end{align}
+と定義すれば，第1の系の分布関数は
+\begin{align}
+\label{mc1}
+\fbox{
+$\rho({}^{N_1}\Gamma)
+=\dfrac{w_2(E-H_{N_1},V_2,N_2)\delta E}{W(E,V,N,\delta E)}$
+}
+\end{align}
+となる．この確率分布関数は，第1の系の位相空間ではエネルギー一定の狭い幅に分布しているわけではなく，$0$から$E$のエネルギーにわたって分布している．しかも，全系としては熱平衡状態にあるので，等重率の原理から，この中では一様に分布している．\\
+%
+%
+%
+%
+　第1の系がエネルギー区間$[E_1,E_1+\delta E_1]$の間に見いだされる確率は，$\delta E_1$を微小な量とすると，
+\begin{align}
+{\rm{Prob}}[E_1\leq\hat{E_1}\leq E_1+\delta E_1]=\int_{E_1}^{E_1+\delta E_1}dE_1^\prime\rho(E_1^\prime)\simeq\rho(E_1)\delta E_1
+\end{align}
+と表される．この確率$\rho(E_1)\delta E_1$を得るためには，位相空間上の分布$\rho_1({}^{N_1}\Gamma)$をエネルギー分布$\rho_1(E_1)$にする必要がある．そのためには区間$[E_1,E_1+\delta E_1]$にある状態数を数えなければならない．$\rho_1({}^{N_1}\Gamma)$を部分系1の全位相空間$({}^{N_1}\Gamma)$にわたって積分すると，全分布を積分することになるから1になる：
+\begin{align}\label{normal1}
+\intertext{$\rho({}^{N_1}\Gamma)$に(\ref{mc1})を代入すると}
+\frac{1}{(2\pi\hbar)^{3N_1}}\int d^{N_1}\Gamma\rho_1({}^{N_1}\Gamma)
+&=\frac{1}{(2\pi\hbar)^{3N_1}}\int d^{N_1}\Gamma
+\underbrace{\frac{1}{(2\pi\hbar)^{3N_2}}\int d^{N_2}\Gamma\rho_{\rm{mc}}({}^{N}\Gamma)}_{\rho_1({}^{N_1}\Gamma)
+\text{：(\ref{mc1})}}\notag\\
+%
+\intertext{$N=N_1+N_2$より}
+&=\frac{1}{(2\pi\hbar)^{3N}}\int d^{N}\Gamma\rho_{\rm{mc}}({}^{N}\Gamma)=1．
+\end{align}
+したがって，第1の位相空間のある$E_1=H_{N_1}$という面で分布をきるような階段関数
+　\begin{equation}\label{heav}
+\Theta_1\bigl(E_1-H_{N_1}(\bm{q},\bm{p})\bigr)
+  = \begin{cases}
+      1  & (E_1\geq H_{N_1}(\bm{q},\bm{p}))\\[15pt]
+      0 & (E_1<H_{N_1}(\bm{q},\bm{p}))
+    \end{cases}
+\end{equation}
+をかけて，全空間で積分すると，$0$から$E_1$をとるような状態の状態数が得られる：
+\begin{align}\label{est0}
+W_0(E_1)
+=\frac{1}{(2\pi\hbar)^{3N_1}}\int_{0\leq H_{N_1}\leq E_1} d^{N_1}\Gamma
+\Theta_1\bigl(E_1-H_{N_1}(\bm{q},\bm{p})\bigr)．
+\end{align}
+これを$E_1$で微分すれば，$E_1$に関するエネルギー状態密度は(\ref{est0})から次のように求まる：
+\begin{align}\label{est0}
+w_1(E_1)&=\frac{\partial W_0(E_1)}{\partial E_1}
+=\frac{1}{(2\pi\hbar)^{3N_1}}\int_{0\leq H_{N_1}\leq E_1} d^{N_1}\Gamma\rho_1({}^{N_1}\Gamma)
+\frac{\partial \Theta_1\bigl(E_1-H_{N_1}\bigr)}{\partial E_1}\notag\\[10pt]
+&=\frac{1}{(2\pi\hbar)^{3N_1}}\int_{0\leq H_{N_1}\leq E_1} d^{N_1}\Gamma\rho_1({}^{N_1}\Gamma)
+\delta\bigl(E_1-H_{N_1}\bigr)=\delta\bigl(E_1-H_{N_1}\bigr)．
+\end{align}
+最後の式を得るのに，規格化の式(\ref{normal1})を用いた．
+%
+
+
+
+
+
+%
+\subsection{カノニカル分布の導出}
+前節の結果から，全系（部分系1$+$部分系2）のエネルギーが$E$であるときに，対象とする部分系1がエネルギー$E_1$と$E_1+\delta E_1$をとるような状態が見出される確率は，
+\begin{align}
+\label{probe1}
+\rho_1(E_1)\delta E_1
+=\frac{w_1(E_1,V_1,N_1)w_2(E-E_1,V_2,N_2)\delta E_1\delta E}{w_{1+2}(E,V,N_1+N_2)\delta E}
+\end{align}
+で表された．ここで部分系2のエントロピーを，Boltzmanの関係式より，
+\begin{align}
+%\label{probe1}
+S(E-E_1)=k_{\rm B}\ln W(E-E_1,V_2,N_2,\delta E)=k_{\rm B}\ln \{w_2(E-E_1)\delta E\}
+\end{align}
+と書くことにすると，
+\begin{align}
+%\label{probe1}
+\fbox{
+$w_2(E-E_1)\delta E=e^{S(E-E_1)/k_{\rm B}}$
+}
+\end{align}
+となる．部分系2を全系の中から非常に大きな割合でとり，そこから熱を多少取り出してもその温度を変えないとすれば，部分系2の内部エネルギーは，部分系1の内部エネルギーは，部分系1の内部エネルギーより，はるかに大きいので，$E_2=E-E_1\gg E_1$と評価できる．すると，$E_1$は$E_2$に比べて微小であるから，$S(E-E_1)$は$E_1$でTaylar展開できる：
+\begin{align}\label{stay1}
+S(E-E_1)-S(E)=\frac{\partial S(E)}{\partial E}\Biggr|_{E=E_1}(-E_1)+\cdots．
+  \end{align}
+%%%%%%%%%
+よって，
+\begin{align}
+%\label{w1}
+w_2(E-E_1)\delta E&=\exp[{S(E-E_1)/k_{\rm B}}]\notag\\[10pt]
+&\simeq\exp
+\left[\frac{1}{k_{\rm B}}
+\left(
+S(E)-\frac{\partial S(E)}{\partial E}\Biggr|_{E=E_1}(E_1)+\cdots
+\right)
+\right]
+  \end{align}
+熱力学関係式$\dfrac{\partial S(E)}{\partial E}=\dfrac{1}{T}$を適用すれば，
+\begin{align}
+\label{w2t}
+w_2(E-E_1)\delta E
+&\simeq\exp
+\left[\frac{1}{k_{\rm B}}
+\left(
+S(E)-\frac{E_1}{T}+\cdots
+\right)
+\right]
+=\exp\left(
+\frac{S(E)}{k_{\rm B}}
+\right)
+\exp\left(
+-\frac{E_1}{k_{\rm B}T}
+\right)
+  \end{align}
+となる．このように展開できるほど大きくとった部分系2のことを熱浴と呼ぶ．部分系1が温度$T$のもとでエネルギー$E_1$をとる確率は，この(\ref{w2t})と(\ref{probe1})により
+\begin{align}
+\label{probe12}
+\rho_1(E_1)\delta E_1
+&\simeq\frac{w_1(E_1,V_1,N_1)\exp\left(
+\frac{S(E)}{k_{\rm B}}
+\right)
+\exp\left(
+-\frac{E_1}{k_{\rm B}T}
+\right)\delta E_1}{w_{1+2}(E,V,N_1+N_2)\delta E}\notag\\[10pt]
+%
+&=Cw_1(E_1,V_1,N_1)
+\exp\left(
+-\frac{E_1}{k_{\rm B}T}
+\right)\delta E_1
+\end{align}
+となる．ただし定数$C$は
+\begin{align}
+\label{probe12}
+C
+&=\frac{\exp\left(
+\frac{S(E)}{k_{\rm B}}
+\right)}{w_{1+2}(E,V,N_1+N_2)\delta E}
+=\frac{\exp\left(
+\frac{S(E)}{k_{\rm B}}
+\right)}{W(E,V,N,\delta E)}=\text{一定}
+\end{align}
+である．したがって，部分系1が温度Tのもとでエネルギー$E_1$である確率分布関数は，
+\begin{align}
+\label{probe13}
+\fbox{
+$\rho_1(E_1)
+=Cw_1(E_1,V_1,N_1)
+e^{-\beta E_1}$
+}
+\end{align}
+となる．ここで定数$\beta\coloneqq(k_{\rm B}T)^{-1}$として導入された．$C$は定数であるが，確率分布の規格化条件から，すべてのエネルギー$E_1$で規格化しなければならない．したがって，
+\begin{align}
+\int_0^{\infty}\rho_1(E_1)dE_1=1
+\end{align}
+より，
+\begin{align}
+C^{-1}=\int_0^{\infty}dE_1w_1(E_1)e^{\beta E_1}
+\end{align}
+と定数が定まるから，これを$\beta$の関数として
+\begin{align}
+Z(\beta)\coloneqq C^{-1}=\int_0^{\infty}dE_1w_1(E_1)e^{\beta E_1}
+\end{align}
+と定義する．本来部分系1のエネルギーは$0$から$E$までしか取れないが，熱浴のエネルギーは非常に大きく，部分系1が無限大のエネルギーを持ってしまうような確率も考慮できるとしたので，積分範囲を無限大までとった．ここで定義された$Z(\beta)$はすべてのエネルギーの状態数を足したものだから，状態和または分配関数と呼ばれる．\\
+　結果として，温度$T(=1/k_{\rm B}\beta)$の閉じた系がエネルギー$E$をとる確率分布として，
+\begin{align}\label{cnod1}
+\fbox{
+$\rho_{\rm c}(E,\beta)
+=\dfrac{1}{Z(\beta)}w(E)
+e^{-\beta E}$
+}
+\end{align}
+が得られる．ただし，$Z(\beta)$はカノニカル分配関数
+\begin{align}
+\label{z1}
+\fbox{
+$Z(\beta)=\displaystyle\int_0^{\infty}dEw(E)e^{-\beta E}$
+}
+\end{align}
+である．分布関数(\ref{cnod1})をカノニカル分布関数という．ある温度を条件として決めたときに，ミクロカノニカル集団がどのような
+エネルギー分布をするかを表した式と捉えることもできる．カノニカル集団はその意味でミクロカノニカル集団を含んでいる．
+%
+\paragraph{コラム：分配関数とラプラス変換}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+\subsection{}
+カノニカル分布関数(\ref{cnod1})は状態密度が入っているため，何となく見通しが悪い，これは，古典力学では状態数を常に連続量から常に連続量から扱っているためである．それならば，初めから連続な空間である位相空間上の分布関数にしてしまえば，きれいになる．そのためには，$w_1(E_1)$を状態密度の定義式
+\begin{align}
+w_1(E_1)
+&=
+\dfrac{1}{(2\pi\hbar)^{3N_1}}\int d^{N_1}\Gamma
+\delta\bigl(E_1-H_{N_1}\bigr)
+\end{align}
+を用いて書き換えた式
+\begin{align}
+\rho_1(E_1)
+&=\dfrac{1}{Z(\beta)}w(E_1)
+e^{-\beta E_1}\notag\\[10pt]
+%
+&=\dfrac{1}{Z(\beta)}\dfrac{1}{(2\pi\hbar)^{3N_1}}\int d^{N_1}\Gamma
+\delta\bigl(E_1-H_{N_1}\bigr)
+e^{-\beta E}
+\end{align}
+とエネルギー空間での分布関数と位相空間での分布関数の規格条件が等しいことから成り立つ等式
+\begin{align}\label{eg}
+\int_0^{\infty}\rho(E)dE=
+\dfrac{1}{(2\pi\hbar)^{3N}}\int d^{N}\Gamma\rho({}^N\Gamma)=1
+\end{align}
+より，次のように示される．この二つの式を組み合わせれば，
+\begin{align}
+\int_0^{\infty}\rho_1(E_1)dE_1&=
+\int_0^{\infty}dE_1
+\left(\dfrac{1}{Z(\beta)}\dfrac{1}{(2\pi\hbar)^{3N_1}}\int d^{N_1}\Gamma
+\delta\bigl(E_1-H_{N_1}\bigr)
+e^{-\beta E_1}\right)\notag\\
+%
+\intertext{積分の順序は交換できるとして，整理すると}
+&=\dfrac{1}{Z(\beta)}\dfrac{1}{(2\pi\hbar)^{3N_1}}
+\int d^{N_1}\Gamma\int_0^{\infty}dE_1
+\delta\bigl(E_1-H_{N_1}\bigr)
+e^{-\beta E_1}\\
+%
+\intertext{となり，ここで，エネルギー空間上の積分を実行すれば，デルタ関数の定義より，上式の右辺は}
+&=\dfrac{1}{Z(\beta)}\dfrac{1}{(2\pi\hbar)^{3N_1}}
+\int d^{N_1}\Gamma
+e^{-\beta H_{N_1}}
+\end{align}
+となる．(\ref{eg})と比較してやれば，
+\begin{align}
+\dfrac{1}{(2\pi\hbar)^{3N}}\int d^{N}\Gamma\rho({}^N\Gamma)
+=\dfrac{1}{Z(\beta)}\dfrac{1}{(2\pi\hbar)^{3N_1}}
+\int d^{N_1}\Gamma
+e^{-\beta H_{N_1}}
+\end{align}
+である．つまり，カノニカル分布関数は，${}^N\Gamma$空間上の分布として次のようになる：
+\begin{align}
+\fbox
+{
+$\rho_{\rm c}({}^N\Gamma)=\dfrac{\exp(-\beta H_{N})}{Z(\beta)}$
+}
+\end{align}
+このとき，分配関数も位相空間上の規格化因子として，
+\begin{align}
+\fbox
+{
+$Z(\beta)=\dfrac{1}{(2\pi\hbar)^{3N}}\displaystyle\int d^{N}\Gamma\exp(-\beta H_{N})=\vcentcolon{\rm{Tr}}_{,N}^{\rm{(cl)}}\left\{e^{-\beta H_{N}}\right\}$
+}
+\end{align}
+と書き改められる．

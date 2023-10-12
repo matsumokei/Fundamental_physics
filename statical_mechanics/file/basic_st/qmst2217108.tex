@@ -1,0 +1,975 @@
+%\documentclass[21pt]{jsarticle}\usepackage{ifthen}\newboolean{enlarge}\setboolean{enlarge}{true}
+\documentclass[12pt]{jsarticle}\usepackage{ifthen}\newboolean{enlarge}\setboolean{enlarge}{false}
+%%%%%%
+\setlength{\fullwidth}{16.5truecm}\setlength{\textwidth}{16.5truecm}
+\setlength{\oddsidemargin}{0.0truecm}\setlength{\evensidemargin}{0.0truecm}
+\setlength{\textheight}{21.5truecm}\setlength{\topmargin}{0.0truecm}
+%%%%%%
+\usepackage{amsmath,amsfonts,amssymb}
+\usepackage[dvipdfmx]{graphicx}
+\usepackage[dvipdfmx]{hyperref}\usepackage{pxjahyper}%these two come together
+\usepackage{braket}%dirac notation
+\usepackage{cases}
+\usepackage{here}
+\hypersetup{hidelinks}
+\interfootnotelinepenalty=10000 % this is to keep a footnote in a single page
+\usepackage{bm}%ベクトル記号
+\usepackage{ascmac} %囲い
+\usepackage{tcolorbox}%tcolorboxの作成
+\usepackage{otf}%ローマ数字
+\usepackage{enumerate}
+\tcbuselibrary{raster,skins}
+\newtheorem{theorem}{定理}
+\newtheorem{proof}{証明}
+%%%%%%newcomand
+\newcommand{\be}{\begin{equation}}
+\newcommand{\ee}{\end{equation}}
+\newcommand{\nn}{\nonumber \\}
+
+\newcommand{\hH}{{\hat{H}}}%ハミルトニアン
+\newcommand{\hHt}{{\hat{\mathcal{H}}}}%ハミルトニアン
+\newcommand{\hU}{{\hat{U}}}
+\newcommand{\hN}{{\hat{N}}}
+\newcommand{\hP}{{\hat{P}}}
+\newcommand{\hA}{{\hat{A}}}
+\newcommand{\hAd}{{\hat{A}^\dag}}
+\newcommand{\ha}{{\hat{a}}}
+\newcommand{\had}{{\hat{a}^\dag}}
+\newcommand{\hpsi}{{\hat{\psi}}}
+\newcommand{\hpsid}{{\hat{\psi}^\dag}}
+\newcommand{\hrho}{{\hat{\rho}}}
+\newcommand{\hrhog}{{\hat{\rho}_{\rm{gc}}}}
+\newcommand{\hx}{{\hat{x}}}
+\newcommand{\hy}{{\hat{y}}}
+\newcommand{\hz}{{\hat{z}}}
+\newcommand{\hp}{{\hat{p}}}
+\newcommand{\hvp}{{\hat{\bm p}}}
+\newcommand{\vr}{{\bm{r}}} %vector r
+\newcommand{\vphi}{{\varphi(t,\bm{r})}}
+\newcommand{\rS}{{\rm{S}}}
+\newcommand{\rH}{{\rm{H}}}
+\newcommand{\rI}{{\rm{I}}}
+%%%%%%
+\usepackage{amsmath}
+\makeatletter
+%%%
+%%%  左側、右側に subscript を付記する。
+%%%  使い方: \subscripts{左下}{中身}{右下}
+%%%
+%%%  by FUJIWARA Hiroshi <fujiwara (at) acs.i.kyoto-u.ac.jp>
+%%%
+\newcommand{\subscripts}[3]{%
+  \@mathmeasure\z@\displaystyle{#2}%
+  \global\setbox\@ne\vbox to\ht\z@{}\dp\@ne\dp\z@
+  \setbox\tw@\box\@ne
+  \@mathmeasure4\displaystyle{\copy\tw@_{#1}}%
+  \@mathmeasure6\displaystyle{{#2}_{#3}}%
+  \dimen@-\wd6 \advance\dimen@\wd4 \advance\dimen@\wd\z@
+  \hbox to\dimen@{}\mathop{\kern-\dimen@\box4\box6}%
+}
+\makeatother
+\makeatletter
+% alignL環境 --- 最終行にのみ式番号を振る align 環境
+\def\alignL{\csname align*\endcsname}
+\def\endalignL{\refstepcounter{equation}\tag{\number\c@equation}%
+  \csname endalign*\endcsname}
+  % 丸付き文字
+\newcommand{\maru}[1]{{\ooalign{\hfil
+ \ifnum#1>999 \resizebox{.25\width}{\height}{#1}\else%
+ \ifnum#1>99 \resizebox{.33\width}{\height}{#1}\else%
+ \ifnum#1>9 \resizebox{.5\width}{\height}{#1}\else #1%
+ \fi\fi\fi%
+\/\hfil\crcr%
+\raise.167ex\hbox{\mathhexbox20D}}}}
+%%%%%%
+\newcommand{\LS}[2]{\ifthenelse{\boolean{enlarge}}{#1}{#2}}
+\newcommand{\LO}[1]{\LS{#1}{\relax}}
+\newcommand{\SO}[1]{\LS{\relax}{#1}}
+\newcommand{\LNL}{\LO{\notag\\&}}
+\renewcommand{\theequation}{%
+   \thesection.\arabic{equation}}
+  \@addtoreset{equation}{section}
+%%%%%%
+\begin{document}
+\begin{flushright}
+\footnotesize
+\today
+\end{flushright}
+\noindent
+{\bf
+\Large 量子統計力学の基礎}
+\begin{flushright}
+理学部第2部 物理学科3年 2217108 松本佳大
+
+\end{flushright}
+　量子系として1つの量子状態$\ket{\psi}$のみをとるような系を考える．すると状態$\ket{\psi}$と物理量に相当する演算子$\hat{A}$できまるスカラー量
+\begin{align}
+\label{ev}
+\Braket{\hat{A}}_{\psi}=\Braket{\psi|\hat{A}|\psi}
+\end{align}
+を，物理量$\hat{A}$の$\ket{\psi}$に対する期待値として定義できる．期待値を計算することができれば，考えている系の物理量の観測値をあたえることができる．\\
+　量子系が多数の系によって記述された場合，統計集団の考え方を導入することによって，観測値はどのような表式で記述できるかを本書では述べる．
+
+
+
+%
+\section{置換の基礎}
+\subsection{置換群}
+$n$文字の集合，$J_n=\{1,2,\ldots,N\}$を考える．$J_n$からそれ自身への全単射
+\be
+\begin{array}{ccc}
+\{1,2,\ldots,N\}& \stackrel{P}{\longrightarrow} & \{1,2,\ldots,N\} \\
+\rotatebox{90}{$\in$} & & \rotatebox{90}{$\in$} \\
+i & \longmapsto & P(i)
+\end{array}
+\ee
+を置換とよぶ．この「置換」は具体的には，$N$個の箱に一つずつ入っている$N$個のみかんを取り出し，互いに位置を入れ替える操作を意味し，その置換演算子$\hP$は
+\begin{align}\label{p1}
+\hat{P}=
+\left( 
+\begin{array}{ccccc} 
+1 & 2& 3& \cdots&N\\[5pt] 
+p_1 & p_2&p_3& \cdots&p_{N}\\ 
+\end{array} 
+\right)
+  \end{align}
+と表すことができる．ここで，第二行の$p_i$は，$i$番目の箱に入っていたみかんが$p_i$番目の箱に移されること表す．したがって，各$p_i$は$1$から$N$までの中の一つの値をとり，それらの間に重複はない．（全単射であることが明確に見える．）互いに異なる$\hP$の数は$N!$である．\\
+　$J_3=\{1,2,3\}$を考えて，置換を具体的に議論していく．順序付けした1組の数字$[1,2,3]$を考える．ここで$1$と$2$の数字を交換する．すなわち，別の数字の箱を用意するのではなく，数字だけを入れ替える．すると，$[1,2,3]\to[2,1,3]$となる．この操作を
+，
+\be
+(2,1)[1,2,3]\equiv(1,2)[1,2,3]=[2,1,3]
+\ee
+で表す．操作
+\begin{align}%\label{}
+\hat{P}_{12}\equiv
+\left( 
+\begin{array}{cc} 
+1 & 2\\[5pt] 
+2&1\\ 
+\end{array} 
+\right)
+\equiv(1,2)\equiv(2,1)
+  \end{align}
+を，1と2の互換という．二つの数字を互いに入れ替えるから互換である．この操作は$J_3$における置換を表す行列
+$
+\left( 
+\begin{array}{ccc} 
+1 & 2&3\\ 
+2&1&3\\ 
+\end{array} 
+\right)
+$
+を用いて，
+次式でも表される：
+\begin{align}%\label{}
+\left( 
+\begin{array}{ccc} 
+1 & 2&3\\[5pt] 
+2&1&3\\ 
+\end{array} 
+\right)
+[1,2,3]\equiv[2,1,3]．
+  \end{align}
+この際重要なのは，置換の中の数字の上下の対応であり，次に示す6個の置換は全く同じものを表す：
+\begin{align}%\label{}
+\left( 
+\begin{array}{ccc} 
+1 & 2&3\\[5pt] 
+2&1&3\\ 
+\end{array} 
+\right)
+%
+&\equiv
+\left( 
+\begin{array}{ccc} 
+1 & 3&2\\[5pt] 
+2&3&1\\ 
+\end{array} 
+\right)
+%
+\equiv
+\left( 
+\begin{array}{ccc} 
+2 & 1&3\\[5pt] 
+1&2&3\\ 
+\end{array} 
+\right)\nn[10pt]
+%
+%
+&\equiv
+\left( 
+\begin{array}{ccc} 
+2& 3&1\\[5pt] 
+1&3&2\\ 
+\end{array} 
+\right)
+%
+\equiv
+\left( 
+\begin{array}{ccc} 
+3& 1&2\\[5pt] 
+3&2&1\\ 
+\end{array} 
+\right)
+%
+\equiv
+\left( 
+\begin{array}{ccc} 
+3& 2&1\\[5pt] 
+3&1&2\\ 
+\end{array} 
+\right)
+  \end{align}
+したがって，3個の数字に関する異なる置換は，
+\begin{align}%\label{}
+&\left( 
+\begin{array}{ccc} 
+1 & 2&3\\[5pt] 
+1&2&3\\ 
+\end{array} 
+\right)，
+%
+\left( 
+\begin{array}{ccc} 
+1 & 2&3\\[5pt] 
+2&1&3\\ 
+\end{array} 
+\right)，
+%
+\left( 
+\begin{array}{ccc} 
+1& 2&3\\[5pt] 
+2&3&1\\ 
+\end{array} 
+\right)\nn[10pt]
+%
+%
+&
+\left( 
+\begin{array}{ccc} 
+1& 2&3\\[5pt]
+3&1&2\\ 
+\end{array} 
+\right)，
+%
+\left( 
+\begin{array}{ccc} 
+1& 2&3\\[5pt]
+1&3&2\\ 
+\end{array} 
+\right)，
+%
+\left( 
+\begin{array}{ccc} 
+1& 2&3\\[5pt]
+3&2&1\\ 
+\end{array} 
+\right)\notag
+  \end{align}
+の$3!=6$個である．これらの行列を順に
+\begin{align}%\label{}
+\hP_1&\equiv\left( 
+\begin{array}{ccc} 
+1 & 2&3\\[5pt] 
+1&2&3\\ 
+\end{array} 
+\right)，
+%
+\hP_2\equiv\left( 
+\begin{array}{ccc} 
+1 & 2&3\\[5pt] 
+2&1&3\\ 
+\end{array} 
+\right)，
+%
+\hP_3\equiv\left( 
+\begin{array}{ccc} 
+1& 2&3\\[5pt] 
+2&3&1\\ 
+\end{array} 
+\right)\nn[10pt]
+%
+%
+\hP_4&\equiv\left( 
+\begin{array}{ccc} 
+1& 2&3\\[5pt]
+3&1&2\\ 
+\end{array} 
+\right)，
+%
+\hP_5\equiv\left( 
+\begin{array}{ccc} 
+1& 2&3\\[5pt]
+1&3&2\\ 
+\end{array} 
+\right)，
+%
+\hP_6\equiv\left( 
+\begin{array}{ccc} 
+1& 2&3\\[5pt]
+3&2&1\\ 
+\end{array} 
+\right)\notag
+  \end{align}
+で表すことにする．\\
+　二つの置換$\hP_a$と$\hP_b$の積を
+\be
+(\hP_a\hP_b)[1,2,3]\equiv\hP_a(\hP_b[1,2,3])
+\ee
+で定義する．この積演算は積の順番に右から実行される．3個の数字の異なる置換は6個の要素からなる集合$\{\hP_i\}$である：
+\be
+\{\hP_i\}
+=\{
+\hP_1,\hP_2,\hP_3,\hP_4,\hP_5,\hP_6
+\}
+\ee
+は群の基本則（定義）をみたす．この群を3次の置換群という．
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+\paragraph{群の基本則}
+\subsection*{{{\ajRoman{1} 合成則}}}
+\subsection*{{{\ajRoman{2} 合成則}}}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+%
+\subsection{偶置換と奇置換}
+
+
+
+
+
+
+
+
+
+
+
+
+%
+\subsection{ブロッホ -- ド・ドミニシスの定理とその証明}
+  \begin{itembox}[l]{ブロッホ -- ド・ドミニシスの定理}
+\begin{align}
+\braket{\hA_1\hA_2\cdots\hA_{2n}}\equiv
+{\rm{TR}}[\hrhog\hA_1\hA_2\cdots\hA_{2n}]
+\end{align}
+  \end{itembox}
+  \begin{screen}
+  \begin{theorem}[ブロッホ -- ド・ドミニシスの定理]
+\begin{align}\label{bdt}
+\braket{\hA_1\hA_2\cdots\hA_{2n}}&\equiv
+{\rm{TR}}[\hrhog\hA_1\hA_2\cdots\hA_{2n}]\nn[10pt]
+&={\displaystyle\sum_{\hat{P}}}^\prime\sigma^P\braket{\hA_{p_1}\hA_{p_2}}\braket{\hA_{p_3}\hA_{p_4}}\cdots\braket{\hA_{p_{2n-1}}\hA_{p_{2n}}}
+\end{align}
+  \end{theorem}
+  \end{screen}
+を証明しよう．ここで，$\hA_j$は$\ha_{q_j}$あるいは$\had_{q_j}$を表すものとし，期待値の定義ではグランドカノニカル密度演算子による定義(\ref{gc3})を用いた．また${\displaystyle\sum_{\hat{P}}}^\prime$は置換
+\begin{subequations}
+%
+\begin{align}\label{bd1}
+\hat{P}=
+\left( 
+\begin{array}{rrrrrr} 
+1 & 2& 3& \cdots& 2n-1&2n\\[5pt] 
+p_1 & p_2&p_3& \cdots& p_{2n-1}&p_{2n}\\ 
+\end{array} 
+\right)
+  \end{align}
+  のうち
+%
+\be\label{bd2}
+p_1<p_2<p_3<p_4<\cdots<p_{2n-1}<p_{2n} \ \ \ \ \ p_1<p_3<\cdots<p_{2n-1}
+\ee
+\end{subequations}
+を満たすものについての和である．(\ref{bdt})の変形を「Wick分解」ともいう．\\
+%%%%%%%%%%%%
+　証明のために，交換関係を一つにまてめて
+　\begin{equation}\label{bd3}
+    [\hA_i,\hA_j]_{\sigma}=\hA_i\hA_j+\sigma\hA_j\hA_i=(i,j)，\ \ \ \ \ \ \ \ (i,j)
+  = \begin{cases}
+      \delta_{i,j}  &：\hA_i=\ha_{q_i}，\hA_j=\had_{q_j} \\[5pt]
+      -\sigma\delta_{i,j} &：\hA_i=\had_{q_i}，\hA_j=\ha_{q_j}\\[5pt]
+      0 & ：\text{その他の場合}\\[5pt]
+    \end{cases}
+\end{equation}
+と表す．すると，(\ref{bdt})左辺の期待値は，(\ref{bd3})を用いて$\hA_1$を隣り合う演算子と交換し，一番右まで移動させ，c数$(i,j)$を集団平均操作の外に出すことにより，次のように変形できる：
+%
+\begin{align}
+\braket{\hA_1\hA_2\cdots\hA_{2n}}&=
+\braket{[(1,2)+\sigma\hA_2\hA_1]\hA_3\cdots\hA_{2n}}\ \ \ (\hA_1\hA_2=(1,2)+\sigma\hA_2\hA_1)\nn[10pt]
+&=(1,2)\braket{\hA_3\cdots\hA_{2n}}
++\sigma\braket{\hA_2\hA_1\hA_3\cdots\hA_{2n}}\nn[10pt]
+%
+&=(1,2)\braket{\hA_3\cdots\hA_{2n}}
++\sigma\braket{\hA_2\hA_1\hA_3\cdots\hA_{2n}}\nn[10pt]
+%
+&=(1,2)\braket{\hA_3\cdots\hA_{2n}}
++\sigma\braket{\hA_2[(1,3)+\sigma\hA_3\hA_1]\hA_4\cdots\hA_{2n}}\nn[10pt]
+%
+&=(1,2)\braket{\hA_3\cdots\hA_{2n}}
++\sigma(1,3)\braket{\hA_2\hA_4\cdots\hA_{2n}}
++\sigma^2\braket{\hA_2\hA_3\hA_1\hA_4\cdots\hA_{2n}}
+\end{align}
+これを次々と繰り返して，
+\begin{align}\label{bd4}%
+%
+\braket{\hA_1\hA_2\cdots\hA_{2n}}
+&=(1,2)\braket{\hA_3\cdots\hA_{2n}}
++\sigma(1,3)\braket{\hA_2\hA_4\cdots\hA_{2n}}
++\sigma^2(1,4)\braket{\hA_2\hA_3\cdots\hA_{2n}}\nn[10pt]
+%
+&\ \ \ +\cdots
++\sigma^{2n-2}(1,2n)\braket{\hA_2\hA_3\cdots\hA_{2n-1}}\nn[10pt]
+&\ \ \ \ \ \ \ \ \ \ +\sigma^{2n-1}\braket{\hA_2\hA_3\hA_4\cdots\hA_{2n}\hA_1}．
+\end{align}
+さらに最後の項は，(\ref{bdt})の平均の定義から，
+\begin{align}
+\braket{\hA_2\hA_3\hA_4\cdots\hA_{2n}\hA_1}={\rm{TR}}[\hrhog\hA_2\cdots\hA_{2n}\hA_1]
+=\dfrac{{\rm{TR}}[e^{-\beta\hHt_0}\hA_2\hA_3\hA_4\cdots\hA_{2n}\hA_1]}{{\rm{TR}}[e^{-\beta\hHt_0}]}
+\end{align}
+例えば$\hA_1=\ha_{q_1}$の場合，右辺の分子は一般に${\rm{Tr}}[\hat{X},\hat{Y}]={\rm{Tr}}[\hat{Y},\hat{X}]$が成り立つことと，(\ref{b1})から，
+\begin{align}
+{\rm{TR}}[e^{-\beta\hHt_0}\hA_2\hA_3\hA_4\cdots\hA_{2n}\hA_1]
+&={\rm{TR}}[e^{-\beta\hHt_0}\hA_2\hA_3\hA_4\cdots\hA_{2n}\ha_{q_1}]\nn[10pt]
+%
+&={\rm{TR}}[\hA_2\hA_3\hA_4\cdots\hA_{2n}\ha_{q_1}e^{-\beta\hHt_0}]\nn[10pt]
+%
+&=c_{q_1}{\rm{TR}}[\hA_2\hA_3\hA_4\cdots\hA_{2n}e^{-\beta\hHt_0}\ha_{q_1}]
+\ \ \ (\ha_{q_1}e^{-\beta\hHt_0}=c_{q_1}e^{-\beta\hHt_0}\ha_{q_1})\nn[10pt]
+%
+&=c_{q_1}{\rm{TR}}[\ha_{q_1}\hA_2\hA_3\hA_4\cdots\hA_{2n}e^{-\beta\hHt_0}]\nn[10pt]
+\end{align}
+となる．よって，$\hA_1=\ha_{q_1}$の場合
+\begin{align}
+\braket{\hA_2\hA_3\hA_4\cdots\hA_{2n}\hA_1}
+=\dfrac{c_{q_1}{\rm{TR}}[\ha_{q_1}\hA_2\hA_3\hA_4\cdots\hA_{2n}e^{-\beta\hHt_0}]}{{\rm{TR}}[e^{-\beta\hHt_0}]}
+=c_{q_1}\braket{\hA_1\hA_2\hA_3\hA_4\cdots\hA_{2n}}
+\end{align}
+が成り立つ．同様にして$\hA_1=\had_{q_1}$の場合も(\ref{b2})を用いて，変形すれば，
+\begin{align}
+\braket{\hA_2\hA_3\hA_4\cdots\hA_{2n}\hA_1}
+=c_{q_1}^{-1}\braket{\hA_1\hA_2\hA_3\hA_4\cdots\hA_{2n}}
+\end{align}
+となる．この結果をまとめれば
+　\begin{equation}\label{bd5}
+  \braket{\hA_2\hA_3\hA_4\cdots\hA_{2n}\hA_1}
+=c_{q_1}^{\eta}\braket{\hA_1\hA_2\hA_3\hA_4\cdots\hA_{2n}}，\ \ \ \ \ \ \ \ \eta
+  = \begin{cases}
+       +1&：\hA_1=\ha_{q_1}\\[5pt]
+      -1&：\hA_1=\had_{q_1}\\[5pt]
+    \end{cases}
+\end{equation}
+と表せる．上の二式と(\ref{bd4})から，
+\begin{align}\label{bd6}%
+%
+(1-\sigma c_{q_1}^{\eta})\braket{\hA_1\hA_2\cdots\hA_{2n}}
+&=(1,2)\braket{\hA_3\cdots\hA_{2n}}
++\sigma(1,3)\braket{\hA_2\hA_4\cdots\hA_{2n}}
++\sigma^2(1,4)\braket{\hA_2\hA_3\cdots\hA_{2n}}\nn[10pt]
+%
+&\ \ \ +\cdots
++\sigma^{2n-2}(1,2n)\braket{\hA_2\hA_3\cdots\hA_{2n-1}}
+\end{align}
+ここで，
+　\begin{equation}
+ \begin{cases}
+       \sigma^{2n}&=1\\[5pt]
+      \sigma^{2n-1}&=\sigma
+    \end{cases}
+\end{equation}
+を用いた．(\ref{bd6})を両辺$(1-\sigma c_{q_1}^{\eta})$でわれば，
+\begin{align}\label{bd7}%
+%
+\braket{\hA_1\hA_2\cdots\hA_{2n}}
+&=\frac{(1,2)}{1-\sigma c_{q_1}^{\eta}}\braket{\hA_3\cdots\hA_{2n}}
++\frac{\sigma(1,3)}{1-\sigma c_{q_1}^{\eta}}\braket{\hA_2\hA_4\cdots\hA_{2n}}
++\frac{\sigma^{2}(1,4)}{1-\sigma c_{q_1}^{\eta}}\braket{\hA_2\hA_3\cdots\hA_{2n}}\nn[10pt]
+%
+&\ \ \ +\cdots
++\frac{\sigma^{2n-2}(1,2n)}{1-\sigma c_{q_1}^{\eta}}\braket{\hA_2\hA_3\cdots\hA_{2n-1}}
+\end{align}
+となる．この等式で$n=1$場合は
+　\begin{equation}\label{bd8}
+  \braket{\hA_1\hA_2}
+=\frac{(1,2)}{1-\sigma c_{q_1}^{\eta}}，\ \ \ \ \ \ \ \ \eta
+  = \begin{cases}
+       +1&：\hA_1=\ha_{q_1}\\[5pt]
+      -1&：\hA_1=\had_{q_1}\\[5pt]
+    \end{cases}
+\end{equation}
+となる．これを(\ref{bd7})へ代入すると，
+\begin{align}\label{bd7}%
+%
+\braket{\hA_1\hA_2\cdots\hA_{2n}}
+&=\braket{\hA_1\hA_2}\braket{\hA_3\cdots\hA_{2n}}
++\sigma\braket{\hA_1\hA_3}\braket{\hA_2\hA_4\cdots\hA_{2n}}
++\sigma^{2}\braket{\hA_1\hA_4}\braket{\hA_2\hA_3\cdots\hA_{2n}}\nn[10pt]
+%
+&\ \ \ +\cdots
++\sigma^{2n-2}\braket{\hA_1\hA_{2n}}\braket{\hA_2\hA_3\cdots\hA_{2n-1}}
+\end{align}
+が得られる．このようにして，「$2n$個の演算子の積の平均」が，「2個の演算子の積の平均」と「$2n-2$個の演算子の積の期待値」を用いて表せた．
+
+
+%%
+\section{正規直交完全系}
+まず，量子力学における重要な要請として，正規直交完全系とはなにかについて述べる．状態$\ket{u_n}$は固有値方程式
+\begin{align}
+\label{eigequ}
+\hat{u}\ket{u_n}=u_n\ket{u_n}
+\end{align}
+をみたす固有状態（固有関数）であるとする．\\
+　状態の無限個の集合$\{\ket{u_1},\ket{u_2},\cdots\}$を$\{\ket{u_n}\}_{n=1,2,\cdots}$とおく．集合$\{\ket{u_n}\}_{n=1,2,\cdots}$が正規直交完全系であるとは，任意の$n,m=1,2,\cdots$について
+　%
+　\begin{align}
+\label{os1}
+\Braket{u_n|u_m}=\delta_{n,m}\ \ \ \ \ \ \text{（正規直交性）}
+\end{align}
+が成り立ち，さらに任意の状態$\ket{\varphi}$が複素数$c_n(n=1,2,\cdots)$を使って，
+　\begin{align}
+\label{os2}
+\ket{\varphi}=\displaystyle\sum_{n=1}^\infty
+c_n\ket{u_n}
+\end{align}
+と展開できることをいう．つまり，任意の状態が直交固有関数を基底として展開できるということである．\\
+　ある$n$について，$\ket{u_n}$と$\ket{\varphi}$の内積をとると，
+　\begin{eqnarray*}
+\begin{split}
+\Braket{u_n|\varphi}&=\ket{u_n}\left(
+\displaystyle\sum_{k=1}^\infty c_k\ket{u_k}
+\right)\\[10pt]
+&=\displaystyle\sum_{k=1}^\infty c_k\Braket{u_n|u_k}\\[10pt]
+&=\displaystyle\sum_{k=1}^\infty c_k\delta_{n,k}=c_n
+  \end{split}
+\end{eqnarray*}
+であることがわかる．すなわち，(\ref{os2})の展開係数は
+　\begin{align}
+\label{cn}
+c_n=\Braket{u_n|\varphi}
+\end{align}
+とかける．この表式を(\ref{os2})に代入してみると，$c_n$を用いずに，
+　\begin{align}
+\label{os3}
+\ket{\varphi}=\displaystyle\sum_{n=1}^\infty\ket{u_n}\Braket{u_n|\varphi}
+\end{align}
+と書ける．$\ket{\varphi}$は任意であるから，(\ref{os3})が恒等的に成り立つためには
+　\begin{align}
+\label{comp}
+\displaystyle\sum_{n=1}^\infty\ket{u_n}\Bra{u_n}=\hat{1}
+\end{align}
+でなければならい．ここで，$\hat{1}$は恒等演算子であり，$1$である．(\ref{comp})の関係式は完全性関係と呼ばれる．完全性関係(\ref{comp})と展開式(\ref{os2})は等価である．
+
+
+
+
+
+
+
+
+
+
+
+
+
+%%
+\section{密度演算子}
+系の状態が多数ある一般的な場合を考える．そして，密度演算子$\hat{\rho}$を導入し，物理量の観測値を求める方法を再定義しなおして拡張する．そのためには，全系のなかの１つの系の状態に注目し，量子力学状態で期待値をとった上で集団（アンサンブル）平均をとらなければならない．注目した1つの系の固有状態と系の状態そのものの分布状況を1つの演算子として表現するのが密度演算子である．
+\subsection{量子力学的期待値}
+系が量子力学で記述されているとし，系の状態が多数ある場合を考える．つまり，系全体は系$\alpha$，系$\beta$，系$\gamma$，$\cdots$等の多数の系の状態によって記述されているということである．このような状態を混合状態という．系の状態をひとつひとつ区別するために，指標$\alpha$を用いて，系$\alpha$の状態を$\ket{\varphi^{(\alpha)}}$と表す．そして，多数の系の集合を次のように表す．このとき，多数ある系の代表として，指標$\alpha$を用いていることに注意したい．
+　\begin{align}
+\left\{
+\ket{\varphi^{(\alpha)}}
+\right\}
+:=
+\left\{
+\cdots,\ket{\varphi^{(1)}},\ket{\varphi^{(2)}},\cdots
+\right\}
+\end{align}
+任意の状態$\ket{\varphi^{(\alpha)}}$はすべて，共通の完全系$\{\ket{u_n}\}_{n=1,2,\cdots}$で展開できるものとする．展開は(\ref{os3})の表式を用いて，
+　\begin{align}
+\label{sta}
+\ket{\varphi^{(\alpha)}}=\displaystyle\sum_{n=1}^\infty\ket{u_n}\braket{u_n|\varphi^{(\alpha)}}
+\end{align}
+と展開する．\\
+　ここで$\hat{A}$を任意の物理量に対応する演算子とする．系$\alpha$における演算子$\hat{A}$の量子力学的期待値$\Braket{\hat{A}^{(\alpha)}}$を求める．そのためには，期待値の定義式(\ref{ev})より，
+　　\begin{align}\label{Ea1}
+\Braket{\hat{A}^{(\alpha)}}&=\braket{\varphi^{(\alpha)}|\hat{A}|\varphi^{(\alpha)}}
+  \end{align}
+を計算すればよい．ここで，(\ref{sta})の共役をとると，
+　\begin{align}
+\label{stabra}
+\left(
+\ket{\varphi^{(\alpha)}}
+\right)^\dag
+&=
+\left(
+\displaystyle\sum_{n=1}^\infty\ket{u_n}\braket{u_n|\varphi^{(\alpha)}}
+\right)^\dag\notag\\[5pt]
+&=
+\displaystyle\sum_{n=1}^\infty
+\braket{u_n|\varphi^{(\alpha)}}^\dag
+\left(
+\ket{u_n}
+\right)^\dag
+=
+\displaystyle\sum_{n=1}^\infty
+\braket{\varphi^{(\alpha)}|u_n}
+\bra{u_n}
+\end{align}
+となる．したがって，(\ref{sta})と(\ref{stabra})を(\ref{Ea1})へ代入すれば，
+%
+　\begin{eqnarray*}
+\begin{split}
+\Braket{\hat{A}^{(\alpha)}}
+&=\braket{\varphi^{(\alpha)}|\hat{A}|\varphi^{(\alpha)}}\\[10pt]
+%
+&=\left(
+\displaystyle\sum_{m=1}^\infty
+\braket{\varphi^{(\alpha)}|u_m}
+\bra{u_m}
+\right)
+\hat{A}
+\left(
+\displaystyle\sum_{n=1}^\infty\ket{u_n}\braket{u_n|\varphi^{(\alpha)}}
+\right)\\[10pt]
+%
+&=
+\displaystyle\sum_{m=1}^\infty\displaystyle\sum_{n=1}^\infty
+\braket{\varphi^{(\alpha)}|u_m}
+\bra{u_m}
+\hat{A}
+\ket{u_n}\braket{u_n|\varphi^{(\alpha)}}
+\\[10pt]
+%
+&=\displaystyle\sum_{m=1}^\infty\displaystyle\sum_{n=1}^\infty
+\bra{u_m}
+\hat{A}
+\ket{u_n}\braket{u_n|\varphi^{(\alpha)}}\braket{\varphi^{(\alpha)}|u_m}
+  \end{split}
+\end{eqnarray*}
+%
+よって，量子力学的期待値は
+　\begin{align}
+\label{Ea2}
+\Braket{\hat{A}^{(\alpha)}}=\displaystyle\sum_{m=1}^\infty\displaystyle\sum_{n=1}^\infty
+\bra{u_m}
+\hat{A}
+\ket{u_n}\braket{u_n|\varphi^{(\alpha)}}\braket{\varphi^{(\alpha)}|u_m}
+\end{align}
+と求まる．
+
+
+
+
+%
+\subsection{重率の導入}
+全系に対して，系$\alpha$にある量子状態の個数を$N^{(\alpha)}$とし，その個数の組を配列$\{N^{(\alpha)}\}$とおく．そして，集団を構成する全系の総数を$N$とおくと，
+　\begin{align}
+\label{N}
+\displaystyle\sum_{\alpha}N^{(\alpha)}=\cdots+N^{(1)}+N^{(2)}+\cdots=N
+\end{align}
+が成り立つ．配列$\{N^{(\alpha)}\}$を確率分布として扱うために，$N^{(\alpha)}$の分布を$w^{(\alpha)}$とすると，
+　\begin{align}
+\label{w}
+w^{(\alpha)}=
+\frac{N^{(\alpha)}}
+{N}
+\end{align}
+と表される．この$w^{(\alpha)}$を重率といい，全系に対して，系$\alpha$にある量子状態の個数はどれくらいあるかということを示している．そして，重率は次の条件をみたす．
+　\begin{align}
+\label{w1}
+\displaystyle\sum_{\alpha}w^{(\alpha)}=
+\displaystyle\sum_{\alpha}
+\frac
+{
+N^{(\alpha)}
+}
+{N}
+=\frac{N}{N}
+=1
+\end{align}
+また，重率$w^{(\alpha)}$は$0\leq w^{(\alpha)}\leq1$をみたす．
+
+
+
+
+
+
+
+
+
+%
+\subsection{集団平均（アンサンブル平均）}
+上で求めた系$\alpha$の量子力学的状態における期待値(\ref{Ea2})と重率(\ref{w})を用いて，系の物理量の集団平均を求めていく．それには，重率$w^{(\alpha)}$に期待値$\braket{\hat{A}^{(\alpha)}}$をかけて$\alpha$について和をとればよい．集団平均は
+　\begin{align}
+\label{ensA1}
+\Braket{\hat{A}}&=\displaystyle\sum_{\alpha}w^{(\alpha)}\braket{\hat{A}^{(\alpha)}}\notag\\[10pt]
+%
+&=
+\displaystyle\sum_{\alpha}w^{(\alpha)}\displaystyle\sum_{m=1}^\infty\displaystyle\sum_{n=1}^\infty
+\bra{u_m}
+\hat{A}
+\ket{u_n}\braket{u_n|\varphi^{(\alpha)}}\braket{\varphi^{(\alpha)}|u_m}
+\end{align}
+と計算できる．すべての状態$\ket{\varphi^{\alpha}}$を共通の固有状態$\ket{u_n}$で展開しているから，和の順序を入れ替えることができるから，
+　\begin{align}
+\label{ensA2}
+\Braket{\hat{A}}
+&=
+\displaystyle\sum_{m=1}^\infty\displaystyle\sum_{n=1}^\infty
+\bra{u_m}
+\hat{A}
+\ket{u_n}\bra{u_n}
+\left(
+\displaystyle\sum_{\alpha}
+\ket{\varphi^{(\alpha)}}w^{(\alpha)}\bra{\varphi^{(\alpha)}}
+\right)
+\ket{u_m}
+\end{align}
+となる．ここで，密度演算子$\hat{\rho}$を次式で定義する．
+　\begin{align}
+\label{dope}
+\hat{\rho}:=\displaystyle\sum_{\alpha}
+\ket{\varphi^{(\alpha)}}w^{(\alpha)}\bra{\varphi^{(\alpha)}}
+\end{align}
+すると，
+　\begin{align}
+\label{ensA3}
+\Braket{\hat{A}}
+=
+\displaystyle\sum_{m=1}^\infty\displaystyle\sum_{n=1}^\infty
+\bra{u_m}
+\hat{A}
+\ket{u_n}\braket{u_n|\hat{\rho}|u_m}
+\end{align}
+となる．(\ref{ensA3})において，$n$について和をとるときに完全性関係(\ref{comp})を用いると，
+　\begin{align}
+\label{ensA4}
+\Braket{\hat{A}}
+&=
+\displaystyle\sum_{m=1}^\infty
+\bra{u_m}\hat{A}
+\left(
+\displaystyle\sum_{n=1}^\infty
+\ket{u_n}
+\bra{u_n}
+\right)
+\hat{\rho}
+\ket{u_m}\notag\\[10pt]
+%
+&=
+\displaystyle\sum_{m=1}^\infty
+\bra{u_m}\hat{A}
+\hat{\rho}
+\ket{u_m}
+\end{align}
+となる．$\bra{u_m}\hat{A}\hat{\rho}\ket{u_m}$は行列の$m$行$m$列の成分であるとみることができるから，
+　\begin{align}
+\label{ensA}
+\Braket{\hat{A}}=
+\displaystyle\sum_{m=1}^\infty
+\bra{u_m}\hat{A}
+\hat{\rho}
+\ket{u_m}
+%
+=
+\rm{Tr}
+\{
+\hat{A}
+\hat{\rho}
+\}
+\end{align}
+となる．つまり$\hat{A}\hat{\rho}$の対角和を計算すれば，物理量$\hat{A}$の期待値が$\braket{\hat{A}}$が計算できるのである．\\
+　混合状態の特別な場合として，純粋状態を考える．集団がたった1つの系の状態$\ket{\varphi}$で記述されたとする．この状態を純粋状態という．このとき重率$w^{(\alpha)}$は$w^{(\alpha)}=1$となる．したがって，純粋状態では密度演算子は次のように定義される．
+\begin{align}
+\hat{\rho}:=
+\ket{\varphi}\bra{\varphi}
+\end{align}
+純粋状態の場合は系の状態が1つしかないので，集団平均は状態平均となる．結局，密度演算子の表式(\ref{dope})は純粋状態，混合状態ともに記述できるということである．
+
+
+
+%
+\section{量子Liouville方程式}
+最後に密度演算子$\hat{\rho}$の時間発展を考える．系$\alpha$が時間的に変化するとき，ケット状態$\ket{\varphi^{(\alpha)}(t,\vr)}$は時間発展のSchr\"{o}dinger方程式
+\begin{align}
+\label{sch1}
+i\hbar\frac{d}{dt}\ket{\varphi^{(\alpha)}(t,\vr)}=\hat{H}\ket{\varphi^{(\alpha)}(t,\vr)}
+\end{align}
+に従う．ここで$\hat{H}$はエネルギーに対応するエルミート演算子で，ハミルトニアンといい，それぞれの系においてハミルトニアンは共通であるとする．\\
+　後のために，Schr\"{o}dinger方程式(\ref{sch1})の共役を考える．まず，$\dfrac{d}{dt}\ket{\varphi^{(\alpha)}(t,\vr)}$の共役を求める．微分の定義を用いると，
+　\begin{align}
+\label{sch2}
+\left(
+\frac{d}{dt}\ket{\varphi^{(\alpha)}(t,\vr)}
+\right)^\dag
+&=
+\lim_{\Delta t\to 0} 
+\left(
+\frac{
+\ket{\varphi^{(\alpha)}(t+\Delta t,\vr)}
+-\ket{\varphi^{(\alpha)}(t,\vr)}
+}
+{\Delta t}
+\right)^\dag\notag\\[10pt]
+%
+&=
+\lim_{\Delta t\to 0} 
+\frac{
+\bra{\varphi^{(\alpha)}(t+\Delta t,\vr)}
+-\bra{\varphi^{(\alpha)}(t,\vr)}
+}
+{\Delta t}=\frac{d}{dt}\bra{\varphi^{(\alpha)}(t,\vr)}
+\end{align}
+となる．つまり，ブラ状態の微分である．(\ref{sch2})と$\hat{H}$のエルミート性$\hat{H}^\dag=\hat{H}$を使い，Schr\"{o}dinger方程式(\ref{sch1})全体の共役をとれば，
+\begin{align}
+\label{sch3}
+-i\hbar\frac{d}{dt}\bra{\varphi^{(\alpha)}(t,\vr)}=\bra{\varphi^{(\alpha)}(t,\vr)}\hat{H}
+\end{align}
+が得られる．\\
+%
+%
+%
+　密度演算子(\ref{dope})を直接，時間$t$で微分すると，
+\begin{eqnarray*}
+\begin{split}
+\frac{d\hat{\rho}(t)}{dt}
+&=\frac{d}{dt}\left[
+\displaystyle\sum_{\alpha}\ket{\varphi^{(\alpha)}(t,\vr)}w^{(\alpha)}\bra{\varphi^{(\alpha)}(t,\vr)}
+\right]\\[10pt]
+%%
+&=\displaystyle\sum_{\alpha}
+\left[
+\left(
+\frac{d}{dt}
+\ket{\varphi^{(\alpha)}(t,\vr)}
+\right)
+w^{(\alpha)}\bra{\varphi^{(\alpha)}(t,\vr)}
+%
++
+\ket{\varphi^{(\alpha)}(t,\vr)}w^{(\alpha)}
+\left(
+\frac{d}{dt}\bra{\varphi^{(\alpha)}(t,\vr)}
+\right)
+\right]\\[10pt]
+\lefteqn{\hspace{-20mm}\frac{dw^{\alpha}}{dt}=0であることを用いた．[\cdots]内の第1項へ(\ref{sch1})を，第2項へ(\ref{sch3})を用いれば，}\\%text
+%
+&=\displaystyle\sum_{\alpha}
+\left[
+\frac{1}{i\hbar}\hat{H}
+\ket{\varphi^{(\alpha)}(t,\vr)}
+w^{(\alpha)}\bra{\varphi^{(\alpha)}(t,\vr)}
+-\frac{1}{i\hbar}
+\ket{\varphi^{(\alpha)}(t,\vr)}w^{(\alpha)}
+\bra{\varphi^{(\alpha)}(t,\vr)}\hat{H}
+\right]\\[10pt]
+%
+%
+&=\frac{1}{i\hbar}
+\left[
+\hat{H}
+\left(
+\displaystyle\sum_{\alpha}
+\ket{\varphi^{(\alpha)}(t,\vr)}
+w^{(\alpha)}\bra{\varphi^{(\alpha)}(t,\vr)}
+\right)
+-
+\left(
+\displaystyle\sum_{\alpha}
+\ket{\varphi^{(\alpha)}(t,\vr)}w^{(\alpha)}
+\bra{\varphi^{(\alpha)}(t,\vr)}
+\right)
+\hat{H}
+\right]\\[10pt]
+%
+\lefteqn{\hspace{-20mm}\hat{\rho}=\displaystyle\sum_{\alpha}
+\ket{\varphi^{(\alpha)}(t,\vr)}
+w^{(\alpha)}\bra{\varphi^{(\alpha)}(t,\vr)}を用いると}\\%text
+%
+&=\frac{1}{i\hbar}
+\left[
+\hat{H}\hat{\rho}
+-
+\hat{\rho}\hat{H}
+\right]\\[10pt]
+%
+\lefteqn{\hspace{-20mm}\hat{A}_{\rH}(t)=\hat{U}^{\dag}(t)\hat{A}_{\rS}\hat{U}(t)であるから，}\\%text
+%
+&=\frac{1}{i\hbar}
+\left[
+\hat{H},\hat{\rho}
+\right]
+  \end{split}
+\end{eqnarray*}
+ここで最後の等式には交換子$\left[\hat{H},\hat{A}_{\rH}\right]=\hat{H}\hat{A}_{\rH}-\hat{A}_{\rH}\hat{H}$を用いた．したがって，両辺に$i\hbar$をかけ，整理すれば次式が得られる．
+　\begin{align}
+\label{qmleq}
+i\hbar\frac{d\hat{\rho}(t)}{dt}=\left[
+\hat{H},\hat{\rho}(t)
+\right]
+\end{align}
+この密度演算子の時間発展を表す微分方程式(\ref{qmleq})は量子Liouville方程式と呼ばれる．(\ref{qmleq})は微分方程式であるから，系のハミルトニアン$\hat{H}$と初期時刻での密度演算子$\hat{\rho}_0$を与えて解くことにより密度演算子の時間発展を追うことができる．\\
+　量子Liouville方程式(\ref{qmleq})はHeisenbergの運動方程式
+　\begin{align}
+\label{heiseneq}
+i\hbar\frac{d\hat{A}_{\rH}(t)}{dt}=\left[
+\hat{A}_{\rH}(t),\hat{H}
+\right]
+\end{align}
+と比較すると逆符号であることがわかる．ここで(\ref{qmleq})は物理量に対応する演算子は時間発展させずに，状態を時間発展させて記述したことを思い出す．つまり(\ref{qmleq})はSchr\"{o}dinger描像によって記述されているということがわかる．
+
+
+
+
+
+
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%
+　\begin{thebibliography}{99}
+\item
+{鈴木彰・藤田重次(2008) 『統計熱力学の基礎』（共立出版）}
+\item
+{砂川重信(1991)
+『量子力学』（岩波書店）}
+\item
+{松坂 和夫(1980)
+『線型代数入門』（岩波書店）}
+ 
+\end{thebibliography}
+\end{document}
+
+
